@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/detail.css">
+<link rel="stylesheet" href="/css/detail.css" />
 
 <section id="pro_detail">
     <div class="container">
@@ -10,58 +10,140 @@
                             <div class="cart_module">
                                 <div class="row_sp">
                                     <div class="card">
-                                        <div class="sp_slider slick-initialized slick-slider">
-                                            <div aria-live="polite" class="slick-list draggable">
-                                                <div class="slick-track" style="opacity: 1; width: 314px; transform: translate3d(0px, 0px, 0px);" role="listbox">
-                                                    <img src="{{food.image}}" class="card-img-top slick-slide slick-current slick-active" alt=" {{food.name}} " data-slick-index="0" aria-hidden="false" style="width: 314px;" tabindex="-1" role="option" aria-describedby="slick-slide00">
+                                        <div
+                                            class="sp_slider slick-initialized slick-slider"
+                                        >
+                                            <div
+                                                aria-live="polite"
+                                                class="slick-list draggable"
+                                            >
+                                                <div
+                                                    class="slick-track"
+                                                    style="opacity: 1; width: 314px; transform: translate3d(0px, 0px, 0px);"
+                                                    role="listbox"
+                                                >
+                                                    <img
+                                                        src="{{food.image}}"
+                                                        class="card-img-top slick-slide slick-current slick-active"
+                                                        alt="{{food.name}}"
+                                                        data-slick-index="0"
+                                                        aria-hidden="false"
+                                                        style="width: 314px;"
+                                                        tabindex="-1"
+                                                        role="option"
+                                                        aria-describedby="slick-slide00"
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <h5 class="card-title card-title-big">
-                                                <span><em id="comboQty">1</em>x {{food.name}}</span>
+                                            <h5
+                                                class="card-title card-title-big"
+                                            >
+                                                <span><em id="comboQty">1</em>x
+                                                    {{food.name}}</span>
                                             </h5>
 
-                                            <div class="card-text card-text-detail">
+                                            <div
+                                                class="card-text card-text-detail"
+                                            >
                                                 <span>
                                                     <ul id="comboList">
-                                                        <li id="element_480"> {{food.description}} </li>
+                                                        <li id="element_480">
+                                                            {{food.description}}
+                                                        </li>
                                                     </ul>
                                                 </span>
                                             </div>
 
                                             <div class="wap_nav_tools clearfix">
-                                                <div class="nav justify-content-between">
+                                                <div
+                                                    class="nav justify-content-between"
+                                                >
                                                     <ul class="nav nav_tools">
-                                                        <a class="nav-link" href="javascript:void(0);" onclick="changeQuantityCombo('-');"><i class="fal fa-minus-circle"></i></a>
-                                                        <a class="nav-link" href="javascript:void(0);"><span class="number" id="comboQuantity">1</span></a>
-                                                        <a class="nav-link" href="javascript:void(0);" onclick="changeQuantityCombo('+');"><i class="fal fa-plus-circle"></i></a>
+                                                        <a
+                                                            class="nav-link"
+                                                            href="javascript:void(0);"
+                                                            onclick="changeQuantityCombo('-');"
+                                                        ><i
+                                                                class="fal fa-minus-circle"
+                                                            ></i></a>
+                                                        <a
+                                                            class="nav-link"
+                                                            href="javascript:void(0);"
+                                                        ><span
+                                                                class="number"
+                                                                id="comboQuantity"
+                                                            >1</span></a>
+                                                        <a
+                                                            class="nav-link"
+                                                            href="javascript:void(0);"
+                                                            onclick="changeQuantityCombo('+');"
+                                                        ><i
+                                                                class="fal fa-plus-circle"
+                                                            ></i></a>
                                                     </ul>
-                                                    <h6 class="card-price"><span id="comboPrice"> {{food.price}} </span><em class="old_price"></em></h6>
+                                                    <h6 class="card-price"><span
+                                                            id="comboPrice"
+                                                        >
+                                                            {{food.price}}
+                                                        </span><em
+                                                            class="old_price"
+                                                        ></em></h6>
                                                 </div>
                                             </div>
 
                                             <div class="list_lacarte">
-	                                            <ul class="list-unstyled list-option" id="alacarteList" style="display: none;"></ul>
+                                                <ul
+                                                    class="list-unstyled list-option"
+                                                    id="alacarteList"
+                                                    style="display: none;"
+                                                ></ul>
                                             </div>
 
                                             <div class="set_fixed_sidebar">
                                                 <div class="">
-                                                    <div class="wap_total_price clearfix">
-                                                        <div class="nav justify-content-between">
-                                                            <h5 class="card-title"><span>Giá</span></h5>
-                                                            <h6 class="card-price"><span id="subTotal">{{food.price}}</span></h6>
+                                                    <div
+                                                        class="wap_total_price clearfix"
+                                                    >
+                                                        <div
+                                                            class="nav justify-content-between"
+                                                        >
+                                                            <h5
+                                                                class="card-title"
+                                                            ><span
+                                                                >Giá</span></h5>
+                                                            <h6
+                                                                class="card-price"
+                                                            ><span
+                                                                    id="subTotal"
+                                                                >{{food.price}}</span></h6>
                                                         </div>
                                                     </div>
-                                                    <div class="clearfix row_btn_cart_module mt-3">
-                                                        <div class="row no-gutters">
+                                                    <div
+                                                        class="clearfix row_btn_cart_module mt-3"
+                                                    >
+                                                        <div
+                                                            class="row no-gutters"
+                                                        >
                                                             <div class="col">
-                                                                <a href="javascript:void(0);" class="btn btn-danger btn-block" onclick="addToCart('https://kfcvietnam.com.vn/vi/gio-hang.html');"><span>Thêm vào giỏ hàng</span></a>
+                                                                <a
+                                                                    href="javascript:void(0);"
+                                                                    class="btn btn-danger btn-block"
+                                                                    onclick="addToCart('https://kfcvietnam.com.vn/vi/gio-hang.html');"
+                                                                ><span>Thêm vào
+                                                                        giỏ hàng</span></a>
                                                             </div>
                                                         </div>
-                                                        <div class="row no-gutters">
+                                                        <div
+                                                            class="row no-gutters"
+                                                        >
                                                             <div class="col">
-                                                                <a href="/food" class="btn btn-outline-dark btn-block"><span>QUAY LẠI THỰC ĐƠN</span></a>
+                                                                <a
+                                                                    href="/food"
+                                                                    class="btn btn-outline-dark btn-block"
+                                                                ><span>QUAY LẠI
+                                                                        THỰC ĐƠN</span></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -75,7 +157,10 @@
                     </div>
                     <div class="col-left col-left-new col-lg-8 order-lg-1">
                         <div class="box-left">
-                            <div class="card_option_section card_option_section_update" id="comboSelection">
+                            <div
+                                class="card_option_section card_option_section_update"
+                                id="comboSelection"
+                            >
                                 <div class="nav_menu_header">
                                     <span>{{food.name}}</span>
                                 </div>
