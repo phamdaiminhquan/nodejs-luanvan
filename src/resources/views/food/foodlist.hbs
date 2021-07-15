@@ -18,10 +18,49 @@
                 <td>{{this.price}}</td>
                 <td>{{this.description}}</td>
                 <td>
-                    <span><a href="/food/{{this._id}}/edit">Sửa</a></span>
-                    <span><a href="">Xóa</a></span>
+                    <a href="/food/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+                    <a href="" class="btn btn-link" data-id="{{this._id}}" data-bs-toggle="modal" data-bs-target="#delete-food-modal">Xóa</a>
                 </td>
             </tr>
         {{/each}}
     </tbody>
 </table>
+
+{{!-- Confirm delete course--}}
+<div class="modal fade" id="delete-food-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Xóa món này</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bạn chắc chắn muốn xóa ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="btn-delete-food">Xóa bỏ</button>
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form name="delete-food-form" method="POST"></form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var foodId;
+        var deleteForm = document.forms['delete-food-form'];
+        var btnDeleteFood = document.getElementById('btn-delete-food');
+
+        $('#delete-food-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            foodId = button.data('id');
+        });
+        
+        btnDeleteFood.onclick = function () {
+            deleteForm.action = '/food/' + foodId + '?_method=DELETE';
+            deleteForm.submit();
+        }
+    })
+</script>

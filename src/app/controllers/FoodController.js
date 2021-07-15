@@ -48,6 +48,13 @@ class FoodController {
             .then(() => res.redirect('../admin/foodlist'))
             .catch(next);
     }
+
+    // [DELETE] /food/:id
+    delete(req, res, next) {
+        Food.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
 }
 
 module.exports = new FoodController();
