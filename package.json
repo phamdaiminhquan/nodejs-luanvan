@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "beautiful": "prettier --tab-width 4 --write src/resources/views/**/*.hbs",
-    "start": "nodemon src/index.js",
+    "start": "supervisor src/index.js",
     "watch": "node-sass --watch src/resources/scss -o src/public/css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,6 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/phamdaiminhquan/nodejs-luanvan.git"
   },
+
   "keywords": [
     "luan",
     "van",

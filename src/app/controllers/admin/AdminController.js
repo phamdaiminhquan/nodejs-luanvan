@@ -1,4 +1,5 @@
 const Food = require('../../models/Food');
+const Foodtype = require('../../models/Foodtype');
 const { mongooseToObject } = require('../../../util/mongoose');
 
 class AdminController {
@@ -21,6 +22,21 @@ class AdminController {
             })
             .catch(next);
     }
+
+    showfoodtype(req, res, next) {
+        Foodtype.find({})
+            .then((foodtype) => {
+                foodtype = foodtype.map(foodtype => foodtype.toObject())
+                res.render('foodtype/foodtypelist', { foodtype })
+            })
+            .catch(next);
+    }
+    
+    createfoodtype(req, res, next) {
+        res.render("foodtype/createtype")
+    }
+
+
 }
 
 module.exports = new AdminController();
