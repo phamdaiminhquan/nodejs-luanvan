@@ -4,7 +4,7 @@ const { mongooseToObject } = require('../../util/mongoose');
 class FoodController {
 
     // [GET] /food
-    index(req, res, next) {
+    async index(req, res, next) {
         Food.find({})
             .then((food) => {
                 food = food.map(food => food.toObject())

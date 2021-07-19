@@ -12,8 +12,8 @@ const userSchema = new Schema({
         required: [true, 'Vui lòng nhập số điện thoại'], 
     },
     pin: { 
-        type: Number, 
-        maxlength: [6, 'Vui nhập pin 6 số'], 
+        type: String, 
+        minlength: [10, 'Số điển thoại ít nhất 10 số'], 
         required: [true, 'Vui lòng nhập pin'], 
     },
 }, { 

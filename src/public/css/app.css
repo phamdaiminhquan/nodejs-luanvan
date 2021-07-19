@@ -2,6 +2,10 @@ html, body {
   font-weight: 400;
   color: #707070; }
 
+.bgcolor {
+  background: url(../img/bg/backgroud-header.jpg) top center repeat-x;
+  width: 100%; }
+
 .user-avatar {
   width: 30px;
   height: 30px;
@@ -83,3 +87,67 @@ a.menu-function-admin:hover {
 
 .box-body {
   padding: 10px; }
+
+.menu-food-main {
+  color: red;
+  text-decoration: none; }
+
+.setup-shipper .setup-shipper-title {
+  background: red;
+  padding: 15px;
+  border-radius: 3px 3px 0px 0px; }
+
+.setup-shipper .setup-shipper-title .setup-shipper-title-large {
+  font-size: 14px;
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: bold;
+  line-height: 1.5;
+  margin-bottom: 0px; }
+
+.setup-shipper .setup-shipper-content {
+  border: 1px solid #efefef;
+  border-top: none;
+  border-radius: 0px 0px 3px 3px; }
+
+.setup-shipper-content {
+  width: 100%; }
+
+.clearfix {
+  display: block; }
+
+.setup-shipper .setup-shipper-content .item-policy:first-child {
+  border-top: none; }
+
+.setup-shipper .setup-shipper-content .item-policy:first-child {
+  border-top: none; }
+
+.setup-shipper .setup-shipper-content .item-policy {
+  border-top: 1px solid #efefef;
+  padding: 0; }
+
+.setup-shipper .setup-shipper-content .item-policy a {
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+  color: #333333;
+  font-weight: normal;
+  height: 72px; }
+
+.setup-shipper-content .col-md-12 .child {
+  height: 73px;
+  padding-left: 60px; }
+
+.setup-shipper .setup-shipper-content .item-policy h4 {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  color: #333333;
+  font-weight: normal;
+  display: block; }
+
+.setup-shipper-content .col-md-12 a h4 {
+  height: 74px;
+  line-height: 74px; }

@@ -7,7 +7,7 @@ const handleErrors = (err)=>{
     
 
     if(err.code === 11000){
-        errors.phone = 'so dien thoai nay da ton tai'
+        errors.phone = 'Số điện thoại này đã tồn tại'
         return errors
     }
 
@@ -39,8 +39,8 @@ class AuthController {
 
     //[GET] /signup
     async signup_post(req, res, next) {
-        const { phone , password } = req.body
-        const user = await user_model.create({phone, password})
+        const { phone , pin } = req.body
+        const user = await user_model.create({phone, pin})
         .then((user) => {
             res.status(200).json(user)
         })

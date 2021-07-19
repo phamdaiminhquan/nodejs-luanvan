@@ -35,13 +35,14 @@
         var form = document.forms['form-signup']
         var numberPhoneEl = $("#phone")
         var pinEl = $("#pin")
+        
         var errorPhone = $('.error.phone')
         var errorPin = $('.error.pin')
         form.addEventListener("submit",function (e){
             e.preventDefault()
-            var phone = numberPhoneEl.value
-            var password = pinEl.value
-            errorPhone.text("") 
+            var phone = numberPhoneEl.val()
+            var pin = pinEl.val()
+            errorPhone.text("")
             errorPin.text("") 
             axios.post("/signup",{
                 phone: phone,   
