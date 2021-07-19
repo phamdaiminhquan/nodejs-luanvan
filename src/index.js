@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3300;
 const route = require('./routes');
-const router = require('./routes/news');
 const db = require('./config/db');
 const methodOverride = require('method-override');
 
