@@ -1,0 +1,19 @@
+<div class="container">
+    <h1>THÊM TIN TỨC</h1>
+    <form method="POST" action="/admin/news/store">
+        <div class="form-group">
+            <label for="title">Tiêu đề: </label>
+            <input type="text" class="form-control" id="title" name="title" />
+        </div>
+        <div class="form-group">
+            <label for="image">Thêm ảnh: </label>
+            <input type="text" class="form-control" id="image" name="image" />
+        </div>
+        <div class="form-group">
+            <label for="content">Nội dung: </label>
+            <br>
+            <textarea name="content" id="content" cols="100" rows="5"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Thêm tin tức</button>
+    </form>
+</div>
