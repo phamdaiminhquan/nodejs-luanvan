@@ -7,7 +7,7 @@ const port = 3300;
 const route = require('./routes');
 const router = require('./routes/news');
 const db = require('./config/db');
-const methodOverride = require('method-override'); 
+const methodOverride = require('method-override');
 
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -32,10 +32,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
 route(app);
-
-app.get('/', (req, res) => {
-    res.render('home');
-});
 
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);

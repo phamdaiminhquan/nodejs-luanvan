@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col-6">
+            <center><h1>ĐĂNG KÝ CHỈ 5 PHÚT</h1></center>
+            <form name="form-signup" action="/signup" method="post">
+                <div class="mb-3 row">
+                    <div class="col-sm-2"></div>
+                    <label for="numberPhone" class="col-sm-2 col-form-label">Số điện thoại</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="phone" class="form-control" id="phone">
+                        <div class="error phone mt-2" style="color:red" ></div>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <div class="col-sm-2"></div>
+                    <label for="inputPassword" class="col-sm-2 col-form-label">PIN</label>
+                    <div class="col-sm-6">
+                        <input type="password" name="pin" class="form-control" id="pin">
+                        <div class="error pin mt-2" style="color:red"></div>  
+                    </div>
+                </div>
+                <center><button type="submit" class="btn btn-primary btn-submit">Đăng ký</button></center>
+            </form>
+        </div>
+        <div class="col-3">
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    document.addEventListener("DOMContentLoaded",function(){
+        var form = document.forms['form-signup']
+        var numberPhoneEl = $("#phone")
+        var pinEl = $("#pin")
+        var errorPhone = $('.error.phone')
+        var errorPin = $('.error.pin')
+        form.addEventListener("submit",function (e){
+            e.preventDefault()
+            var phone = numberPhoneEl.value
+            var password = pinEl.value
+            errorPhone.text("") 
+            errorPin.text("") 
+            axios.post("/signup",{
+                phone: phone,   
+                pin: pin,
+            })
+            .then((res)=>{
+                console.log(res)
+            })
+            .catch((err)=>{
+                var data = err.response.data.errors
+                errorPhone.text(data.phone) 
+                errorPin.text(data.pin)
+            })
+        }) 
+
+    })
+</script>
