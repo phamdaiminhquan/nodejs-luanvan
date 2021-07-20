@@ -33,7 +33,7 @@ class NewsController {
     }
     update(req, res, next) {
         News.updateOne({ _id: req.params.id }, req.body)
-            .then(() => res.redirect('../admin/News'))
+            .then(() => res.redirect('/admin/news'))
             .catch(next);
     }
     delete(req, res, next) {

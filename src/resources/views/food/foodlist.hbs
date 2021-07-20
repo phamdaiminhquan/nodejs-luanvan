@@ -9,7 +9,7 @@
     <div class="content-header">
       <center><h2 style="color: red">;">DANH SÁCH MÓN ĂN</h2></center>
       <div class="breadcrumb">
-        <a class="btn btn-primary btn-sm" href="/admin/create" role="button">
+        <a class="btn btn-primary btn-sm" href="/admin/foodlist/create" role="button">
           <span class="fas fa-plus-circle"></span> Thêm mới
         </a>
       </div>
@@ -41,7 +41,7 @@
                             <td>{{this.price}}</td>
                             <td>{{this.description}}</td>
                             <td>
-                              <a href="/food/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+                              <a href="foodlist/{{this._id}}/edit" class="btn btn-link">Sửa</a>
                               <a href="" class="btn btn-link" data-id="{{this._id}}" data-bs-toggle="modal" data-bs-target="#delete-food-modal">Xóa</a>
                             </td>
                           </tr>
@@ -82,7 +82,7 @@
                       });
                       
                       btnDeleteFood.onclick = function () {
-                        deleteForm.action = '/food/' + foodId + '?_method=DELETE';
+                        deleteForm.action = '/admin/foodlist/' + foodId + '?_method=DELETE';
                         deleteForm.submit();
                       }
                     })

@@ -36,7 +36,7 @@
                             <th scope="row">{{sum @index 1}}</th>
                             <td>{{this.title}}</td>
                             <td>
-                              <a href="/news/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+                              <a href="/admin/news/{{this._id}}/edit" class="btn btn-link">Sửa</a>
                               <a href="" class="btn btn-link" data-id="{{this._id}}" data-bs-toggle="modal" data-bs-target="#delete-food-modal">Xóa</a>
                             </td>
                           </tr>
@@ -80,7 +80,7 @@
                       });
                       
                       btnDeleteFood.onclick = function () {
-                        deleteForm.action = '/news/' + foodId + '?_method=DELETE';
+                        deleteForm.action = '/admin/news/' + foodId + '?_method=DELETE';
                         deleteForm.submit();
                       }
                     })

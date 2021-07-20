@@ -2,6 +2,19 @@ const Foodtype = require('../models/Foodtype');
 const { mongooseToObject } = require('../../util/mongoose');
 class FoodtypeController {
 
+        
+    showfoodtype(req, res, next) {
+        Foodtype.find({})
+            .then((foodtype) => {
+                foodtype = foodtype.map(foodtype => foodtype.toObject())
+                res.render('foodtype/foodtypelist', { foodtype })
+            })
+            .catch(next);
+    }
+    
+    createtype(req, res, next) {
+        res.render("foodtype/createtype")
+    }
     store(req, res) {
         const formData = req.body;
         const foodtype = new Foodtype(formData);
@@ -19,7 +32,7 @@ class FoodtypeController {
     }
     update(req, res, next) {
         Foodtype.updateOne({_id: req.params.id}, req.body)
-            .then(() => res.redirect('../admin/foodtypelist'))
+            .then(() => res.redirect('/admin/foodtypelist'))
             .catch(next);
     }
     delete(req, res, next) {
