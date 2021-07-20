@@ -4,7 +4,12 @@ html, body {
 
 .bgcolor {
   background: url(../img/bg/backgroud-header.jpg) top center repeat-x;
-  width: 100%; }
+  width: 100%;
+  z-index: 1020; }
+
+.logo a img {
+  height: 150px;
+  padding-right: 200px; }
 
 .user-avatar {
   width: 30px;
@@ -24,7 +29,6 @@ html, body {
   padding: 10px 20px; }
 
 .main-sidebar {
-  position: absolute;
   top: 20px;
   left: 0;
   padding-top: 50px;
@@ -43,7 +47,6 @@ a.menu-function-admin:hover {
   text-decoration: none; }
 
 .content-wrapper, .right-side, .main-footer {
-  margin-left: 230px;
   height: 800px;
   background-color: #ecf0f5;
   z-index: 820; }

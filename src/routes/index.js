@@ -1,5 +1,5 @@
 const adminRouter = require('./admin/admin');
-const foodRouter = require('./admin/food');
+const foodRouter = require('./food');
 const authRouter = require('./auth');
 
 function route(app) {

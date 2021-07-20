@@ -1,90 +1,100 @@
-<div>
-  {{!--side menu manager--}}
-  <div class="main-sidebar">
+<div class="row">
+  <div class="col-lg-2">
+    {{!--side menu manager--}}
+    <div class="main-sidebar">
       {{>admin/menufunction}}
+    </div>
   </div>
 
-  {{!--side content--}}
-  <div class="content-wrapper">
-    <div class="content-header">
-      <center><h2 style="color: red">;">DANH SÁCH TIN TỨC</h2></center>
-      <div class="breadcrumb">
-        <a class="btn btn-primary btn-sm" href="/admin/news/createnews" role="button">
-          <span class="fas fa-plus-circle"></span> Thêm tin 
-        </a>
+  <div class="col-lg-10">
+    {{!--side content--}}
+    <div class="content-wrapper">
+      <div class="content-header">
+        <center>
+          <h2 style="color: red">;">DANH SÁCH TIN TỨC</h2>
+        </center>
+        <div class="breadcrumb">
+          <a class="btn btn-primary btn-sm" href="/admin/news/createnews" role="button">
+            <span class="fas fa-plus-circle"></span> Thêm tin
+          </a>
+        </div>
       </div>
-    </div>
-    <div class="content">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="box" id="view">
-            <div class="box-body">
-              <div class="row" style="padding:0px; margin:0px;">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col"></th>
-                        <th scope="col"><center>Tiêu đề</center></th>
-                        <th scope="col"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box" id="view">
+              <div class="box-body">
+                <div class="row" style="padding:0px; margin:0px;">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col"></th>
+                          <th scope="col">
+                            <center>Tiêu đề</center>
+                          </th>
+                          <th scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
 
                         {{#each news}}
-                          <tr>
-                            <th scope="row">{{sum @index 1}}</th>
-                            <td>{{this.title}}</td>
-                            <td>
-                              <a href="/admin/news/{{this._id}}/edit" class="btn btn-link">Sửa</a>
-                              <a href="" class="btn btn-link" data-id="{{this._id}}" data-bs-toggle="modal" data-bs-target="#delete-food-modal">Xóa</a>
-                            </td>
-                          </tr>
+                        <tr>
+                          <th scope="row">{{sum @index 1}}</th>
+                          <td>{{this.title}}</td>
+                          <td>
+                            <a href="/admin/news/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+                            <a href="" class="btn btn-link" data-id="{{this._id}}" data-bs-toggle="modal"
+                              data-bs-target="#delete-food-modal">Xóa</a>
+                          </td>
+                        </tr>
                         {{/each}}
 
-                    </tbody>
-                  </table>
+                      </tbody>
+                    </table>
 
 
-                  {{!-- //Delete  --}}
+                    {{!-- //Delete --}}
 
-                        <div class="modal fade" id="delete-food-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Xóa món này</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                      </div>
-                      <div class="modal-body">
-                        Bạn chắc chắn muốn xóa ?
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" id="btn-delete-food">Xóa bỏ</button>
-                        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Hủy</button>
+                    <div class="modal fade" id="delete-food-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                      aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Xóa món này</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            Bạn chắc chắn muốn xóa ?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" id="btn-delete-food">Xóa bỏ</button>
+                            <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Hủy</button>
+                          </div>
+                        </div>
                       </div>
                     </div>
+
+                    <form name="delete-food-form" method="POST"></form>
+
+                    <script>
+                      document.addEventListener('DOMContentLoaded', function () {
+                        var foodId;
+                        var deleteForm = document.forms['delete-food-form'];
+                        var btnDeleteFood = document.getElementById('btn-delete-food');
+
+                        $('#delete-food-modal').on('show.bs.modal', function (event) {
+                          var button = $(event.relatedTarget);
+                          foodId = button.data('id');
+                        });
+
+                        btnDeleteFood.onclick = function () {
+                          deleteForm.action = '/admin/news/' + foodId + '?_method=DELETE';
+                          deleteForm.submit();
+                        }
+                      })
+                    </script>
                   </div>
-                  </div>
-
-                  <form name="delete-food-form" method="POST"></form>
-
-                  <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                      var foodId;
-                      var deleteForm = document.forms['delete-food-form'];
-                      var btnDeleteFood = document.getElementById('btn-delete-food');
-
-                      $('#delete-food-modal').on('show.bs.modal', function (event) {
-                        var button = $(event.relatedTarget);
-                        foodId = button.data('id');
-                      });
-                      
-                      btnDeleteFood.onclick = function () {
-                        deleteForm.action = '/admin/news/' + foodId + '?_method=DELETE';
-                        deleteForm.submit();
-                      }
-                    })
-                  </script>
                 </div>
               </div>
             </div>
@@ -94,5 +104,3 @@
     </div>
   </div>
 </div>
-
-
