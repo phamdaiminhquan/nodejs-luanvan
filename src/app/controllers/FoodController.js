@@ -2,9 +2,8 @@ const Food = require('../models/Food');
 const { mongooseToObject } = require('../../util/mongoose');
 
 class FoodController {
-
-    // [GET] /food
-    async index(req, res, next) {
+    //[GET] /food
+    index(req, res, next) {
         Food.find({})
             .then((food) => {
                 food = food.map(food => food.toObject())
@@ -13,7 +12,15 @@ class FoodController {
             .catch(next);
     }
 
-    // [POST] /food/store
+    show(req, res, next) {
+        Food.find({})
+            .then((food) => {
+                food = food.map(food => food.toObject())
+                res.render('food/foodlist', { food })
+            })
+            .catch(next);
+    }
+
     store(req, res, next) {
         const formData = req.body;
         const food = new Food(formData);
@@ -21,15 +28,12 @@ class FoodController {
 
         res.render('food/store')
     }
+    create(req, res, next) {
+        res.render('food/create');
+    }
 
     // [GET] /food/:slug
-    show(req, res, next) {
-        Food.findOne({ slug: req.params.slug })
-            .then(food => res.render('food/detail', { 
-                food: mongooseToObject(food) 
-            }))
-            .catch(next);
-    }
+   
     
     // [GET] /food/:id/edit
     edit(req, res, next) {
@@ -45,7 +49,7 @@ class FoodController {
     // [PUT] /food/:id
     update(req, res, next) {
         Food.updateOne({_id: req.params.id}, req.body)
-            .then(() => res.redirect('../admin/foodlist'))
+            .then(() => res.redirect('/admin/foodlist'))
             .catch(next);
     }
 

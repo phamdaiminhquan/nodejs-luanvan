@@ -7,10 +7,10 @@
   {{!--side content--}}
   <div class="content-wrapper">
     <div class="content-header">
-      <center><h2 style="color: red">;">DANH SÁCH MÓN ĂN</h2></center>
+      <center><h2 style="color: red">;">DANH SÁCH TIN TỨC</h2></center>
       <div class="breadcrumb">
-        <a class="btn btn-primary btn-sm" href="/admin/foodlist/create" role="button">
-          <span class="fas fa-plus-circle"></span> Thêm mới
+        <a class="btn btn-primary btn-sm" href="/admin/news/createnews" role="button">
+          <span class="fas fa-plus-circle"></span> Thêm tin 
         </a>
       </div>
     </div>
@@ -25,32 +25,30 @@
                     <thead>
                       <tr>
                         <th scope="col"></th>
-                        <th scope="col"><center>Hình ảnh</center></th>
-                        <th scope="col"><center>Tên món ăn</center></th>
-                        <th scope="col"><center>Giá</center></th>
-                        <th scope="col"><center>Mô tả</center></th>
+                        <th scope="col"><center>Tiêu đề</center></th>
                         <th scope="col"></th>
                       </tr>
                     </thead>
                     <tbody>
-                        {{#each food}}
+
+                        {{#each news}}
                           <tr>
                             <th scope="row">{{sum @index 1}}</th>
-                            <td><img src="{{this.image}}" alt="{{this.name}}" style="width: 100px"></td>
-                            <td>{{this.name}}</td>
-                            <td>{{this.price}}</td>
-                            <td>{{this.description}}</td>
+                            <td>{{this.title}}</td>
                             <td>
-                              <a href="foodlist/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+                              <a href="/admin/news/{{this._id}}/edit" class="btn btn-link">Sửa</a>
                               <a href="" class="btn btn-link" data-id="{{this._id}}" data-bs-toggle="modal" data-bs-target="#delete-food-modal">Xóa</a>
                             </td>
                           </tr>
                         {{/each}}
+
                     </tbody>
                   </table>
 
-                  {{!-- Confirm delete course--}}
-                  <div class="modal fade" id="delete-food-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                  {{!-- //Delete  --}}
+
+                        <div class="modal fade" id="delete-food-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -82,7 +80,7 @@
                       });
                       
                       btnDeleteFood.onclick = function () {
-                        deleteForm.action = '/admin/foodlist/' + foodId + '?_method=DELETE';
+                        deleteForm.action = '/admin/news/' + foodId + '?_method=DELETE';
                         deleteForm.submit();
                       }
                     })

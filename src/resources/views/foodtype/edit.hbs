@@ -1,0 +1,10 @@
+<div class="container">
+    <h1>CẬP NHẬT LOẠI</h1>
+    <form class="mt-4" method="POST" action="/admin/foodtypelist/{{foodtype._id}}?_method=PUT">
+        <div class="form-group">
+            <label for="nametype">Tên loại: </label>
+            <input type="text" class="form-control" value="{{foodtype.nametype}}" id="nametype" name="nametype" />
+        </div>
+        <button type="submit" class="btn btn-primary">Sửa</button>
+    </form>
+</div>

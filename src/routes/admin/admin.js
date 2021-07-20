@@ -1,16 +1,20 @@
 const express = require('express');
 const router = express.Router();
+
 const advRouter = require('./adv');
+const newsRouter = require('./news');
+const foodRouter = require('./food');
+const foodtypeRouter = require('./foodtype');
 
 const adminController = require('../../app/controllers/admin/AdminController');
-const advController = require('../../app/controllers/AdvController');
 
 // [GET] /admin
 router.get('/', adminController.index);
-router.get('/create', adminController.create);
-router.get('/foodlist', adminController.show);
-router.use('/adv', advRouter);
 
+router.use('/adv', advRouter);
+router.use('/news', newsRouter);
+router.use('/foodlist',foodRouter);
+router.use('/foodtypelist',foodtypeRouter);
 
 
 module.exports = router;
