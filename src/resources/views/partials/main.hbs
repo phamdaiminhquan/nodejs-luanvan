@@ -1,3 +1,4 @@
+<script src="../js/cart.js"></script>
 {{#each food}}
 <div class="col-sm-6 col-lg-4">
     <div class="card">
@@ -11,10 +12,32 @@
             <p class="card-text">{{this.description}}</p>
         </div>
         <div class="card-button">
-            <a href="/food/{{this.slug}}"><button type="button" class="btn btn-outline-dark">TÙY
-                    CHỈNH</button></a>
-            <button type="button" class="btn btn-danger">ĐẶT HÀNG</button>
+            <a href="/food/{{this.slug}}"><button type="button" class="btn btn-outline-dark">TÙY CHỈNH</button></a>
+            <button onclick="onClickAdd('{{this._id}}','{{this.name}}','{{this.description}}','{{this.image}}','{{this.price}}')" type="button" class="btn btn-danger">ĐẶT HÀNG</button>
         </div>
     </div>
 </div>
 {{/each}}
+
+<script>
+
+    function onClickAdd(id, name, description, image, price) {
+
+        var ListItemCart = getListItemCart();
+        var itemExists = false;
+
+        for (var i = 0; i < ListItemCart.length; i++) {
+            var itemCart = ListItemCart[i];
+            if (itemCart.id == id) {
+                itemCart.amount++;
+                itemExists = true;
+            }
+        }
+
+        if (itemExists == false) {
+            var itemCart = createItemCart(id, name, description, image, price, 1);
+            ListItemCart.push(itemCart);
+        }
+        saveListItemCartInLocal(ListItemCart);
+    }
+</script>

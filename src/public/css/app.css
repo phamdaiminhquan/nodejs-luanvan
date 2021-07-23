@@ -1,11 +1,31 @@
 html, body {
   font-weight: 400;
-  color: #707070; }
+  color: #707070;
+  background: url(https://kfcvietnam.com.vn/templates/images/bg.jpg) repeat top center fixed; }
+
+a {
+  text-decoration: none !important; }
+
+.bg-white {
+  background-color: #fff; }
 
 .bgcolor {
   background: url(../img/bg/backgroud-header.jpg) top center repeat-x;
   width: 100%;
   z-index: 1020; }
+
+.cart-item {
+  padding: 2.222222rem;
+  box-shadow: 0px 4px 20px 0px #0000001c;
+  border-radius: 0.3333333333333333em;
+  margin-bottom: 2.222222222222222em; }
+
+.cart-item-img {
+  width: 100px;
+  border-radius: 25%; }
+
+.cart-content {
+  padding: 2.222222222222222em; }
 
 .logo a img {
   height: 150px;
@@ -28,6 +48,19 @@ html, body {
 .card-button {
   padding: 10px 20px; }
 
+.cart_box {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  top: 0; }
+
+.cart-text {
+  font-size: 1.2em;
+  color: #e4002b;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1.2; }
+
 .main-sidebar {
   top: 20px;
   left: 0;
@@ -45,6 +78,17 @@ a.menu-function-admin {
 a.menu-function-admin:hover {
   color: black;
   text-decoration: none; }
+
+.nav-item .nav-link {
+  font-size: 1em;
+  padding: 0.9722222222222222em;
+  color: black;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1.2; }
+
+.navbar-menu {
+  height: 86px; }
 
 .content-wrapper, .right-side, .main-footer {
   height: 800px;
@@ -154,3 +198,20 @@ a.menu-function-admin:hover {
 .setup-shipper-content .col-md-12 a h4 {
   height: 74px;
   line-height: 74px; }
+
+.tang {
+  padding-left: 5px;
+  width: 30px; }
+
+.giam {
+  padding-right: 5px;
+  width: 30px; }
+
+.sl {
+  width: 50px;
+  font-size: 20px;
+  box-shadow: 0px 3px 6px -1px #7b1c1c45 inset;
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 25%;
+  margin-top: 5px; }

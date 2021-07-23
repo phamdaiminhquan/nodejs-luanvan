@@ -28,19 +28,19 @@ class FoodController {
 
         res.render('food/store')
     }
+    
     create(req, res, next) {
         res.render('food/create');
     }
-
     // [GET] /food/:slug
-   
-    
+
+
     // [GET] /food/:id/edit
     edit(req, res, next) {
-        Food.findById({_id: req.params.id})
-            .then((food)=>{
-                res.render('food/edit',{
-                    food: mongooseToObject(food) 
+        Food.findById({ _id: req.params.id })
+            .then((food) => {
+                res.render('food/edit', {
+                    food: mongooseToObject(food)
                 })
             })
             .catch(next);
@@ -48,7 +48,7 @@ class FoodController {
 
     // [PUT] /food/:id
     update(req, res, next) {
-        Food.updateOne({_id: req.params.id}, req.body)
+        Food.updateOne({ _id: req.params.id }, req.body)
             .then(() => res.redirect('/admin/foodlist'))
             .catch(next);
     }
