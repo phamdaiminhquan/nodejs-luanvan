@@ -5,15 +5,15 @@ const advRouter = require('./adv');
 const newsRouter = require('./news');
 const foodRouter = require('./food');
 const foodtypeRouter = require('./foodtype');
-
+const upload = require('../../app/middlewares/multer')
 const adminController = require('../../app/controllers/admin/AdminController');
 
 // [GET] /admin
 router.get('/', adminController.index);
 
-router.use('/adv', advRouter);
+router.use('/adv' , advRouter);
 router.use('/news', newsRouter);
-router.use('/foodlist',foodRouter);
+router.use('/foodlist' , upload.single('image'),foodRouter);
 router.use('/foodtypelist',foodtypeRouter);
 
 

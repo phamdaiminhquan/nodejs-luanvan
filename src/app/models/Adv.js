@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const Adv = new Schema({
     image: { type: String, maxLength: 255 },
+    newsid: { type: String},
     alt: { type: String, maxLength: 255 },
 }, { 
     timestamps: true,

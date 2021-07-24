@@ -26,7 +26,6 @@
 
     function tang(id) {
         var ListItemCart = getListItemCart();
-
         for (var i = 0; i < ListItemCart.length; i++) {
             var itemCart = ListItemCart[i];
             if (itemCart.id == id) {
@@ -86,11 +85,10 @@
             '    </div>\n' +
             '    <hr>\n' +
             '    <div class="row">\n' +
-            '        <div class="col-6"><a class="giam" onclick="giam('+id+')"><img class="giam" src="../img/icon/giam.png" alt="giam"></a><span class="sl">' + itemCart.amount + '</span><a onclick="tang('+id+')"><img class="tang" src="../img/icon/tang.png" alt="tang"></a></div>\n' +
+            '        <div class="col-6"><a class="giam" onclick="giam('+ id +')"><img class="giam" src="../img/icon/giam.png" alt="giam"></a><span class="sl">' + itemCart.amount + '</span><a onclick="tang('+id+')"><img class="tang" src="../img/icon/tang.png" alt="tang"></a></div>\n' +
             '        <div class="col-6"><div class="float-right">' + price + '</div></div>\n' +
             '    </div>\n' +
             '</div>';
         return html;
     }
 </script>
-

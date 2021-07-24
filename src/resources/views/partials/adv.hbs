@@ -1,12 +1,11 @@
 <div id="wp-slider">
     <div class="items-slide">
         <div class="owl-carousel owl-theme">
+            {{#each adv}}
             <div class="item">
-                <img src="https://kfcvietnam.com.vn/uploads/banner/7d40c83e741b15cff4d2b44b17d06e7c.png" alt="">
+                <img src="{{this.image}}" alt="{{this.alt}}">
             </div>
-            <div class="item">
-                <img src="https://kfcvietnam.com.vn/uploads/banner/7d40c83e741b15cff4d2b44b17d06e7c.png" alt="">
-            </div>
+            {{/each}}
         </div>
     </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="container">
-    <h1>CẬP NHẬT MÓN ĂN</h1>
-    <form class="mt-4" method="POST" action="/admin/foodlist/{{food._id}}?_method=PUT">
+    <center><h1>CẬP NHẬT MÓN ĂN</h1></center>
+    <form class="mt-4" method="POST" action="/admin/foodlist/{{food._id}}?_method=PUT" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Tên món ăn: </label>
             <input type="text" class="form-control" value="{{food.name}}" id="name" name="name" />
@@ -11,7 +11,7 @@
         </div>
         <div class="form-group">
             <label for="image">Hình ảnh: </label>
-            <input type="text" class="form-control" value="{{food.image}}" id="image" name="image" />
+            <input type="file" class="form-control" value="{{food.image}}" id="image" name="image" />
         </div>
         <div class="form-group">
             <label for="price">Giá: </label>

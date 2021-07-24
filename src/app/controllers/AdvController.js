@@ -1,5 +1,7 @@
 const Adv = require('../models/Adv');
+const news_models = require('../models/News');
 const { mongooseToObject } = require('../../util/mongoose');
+const { multipleMongooseToOject } = require('../../util/mongoose');
 
 class AdvController {
 
@@ -14,8 +16,14 @@ class AdvController {
     }
 
     // [GET] /adv/create
-    create(req, res) {
-        res.render('adv/create');
+    create(req, res, next) {
+        news_models.find({})
+            .then((news) => { 
+                res.render('adv/create', { 
+                    news: multipleMongooseToOject(news) 
+                });
+            })
+            .catch(next);
     }
 
     // [POST] /adv/store

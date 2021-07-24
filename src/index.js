@@ -1,15 +1,18 @@
 const express = require('express');
-const path = require('path');
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
-const app = express();
-const port = 3300;
 const route = require('./routes');
 const db = require('./config/db');
 const methodOverride = require('method-override');
+const multer  = require('multer');
+const app = express();
+const path = require('path');
+const port = 3300;
 
 app.use(express.static(path.join(__dirname, 'public')))
 
+//body-parser
+app.use(bodyParser.urlencoded({ extended: false }));
 // Connect to DB
 db.connect();
 
