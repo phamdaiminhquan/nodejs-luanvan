@@ -11,9 +11,9 @@ const adminController = require('../../app/controllers/admin/AdminController');
 // [GET] /admin
 router.get('/', adminController.index);
 
-router.use('/adv' , advRouter);
+router.use('/adv' , upload.single('image'), advRouter);
 router.use('/news', newsRouter);
-router.use('/foodlist' , upload.single('image'),foodRouter);
+router.use('/foodlist' , upload.single('image'), foodRouter);
 router.use('/foodtypelist',foodtypeRouter);
 
 

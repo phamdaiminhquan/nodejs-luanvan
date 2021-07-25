@@ -9,7 +9,6 @@ const multer = require('multer');
 class FoodController {
     //[GET] /food
     index(req, res, next) {
-
         Promise.all([
             Food.find({}),
             adv_model.find({})
@@ -71,9 +70,7 @@ class FoodController {
             price: req.body.price,
             image: req.file.filename,
         })
-            .then((food) => {
-                res.json(food)
-            })
+            .then(() => res.redirect('../foodlist'))
             .catch((err) => {
                 res.status(400).json(err)
             })

@@ -1,21 +1,25 @@
 <div class="container">
     <h1>THÊM QUẢNG CÁO</h1>
-    <form method="POST" action="/admin/adv/store">
+    <form method="POST" action="/admin/adv/store" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="image">Hình ảnh: </label>
-            <input type="text" class="form-control" id="image" name="image" />
+            <label for="price">Tin tức: </label>
+            <div class="bootstrap-select">
+                <select class="selectpicker form-select" name="newsid" id="newsid" aria-label="Default select example">
+                    {{#each news}}
+                    <option value="{{this._id}}">
+                        {{this.title}}    
+                    </option>
+                    {{/each}}
+                </select>
+            </div>
         </div>
         <div class="form-group">
-            <label for="price">Alt: </label>
+            <label for="alt">Alt: </label>
             <input type="text" class="form-control" id="alt" name="alt" />
         </div>
         <div class="form-group">
-            <label for="price">Tin tức: </label>
-            <select name="newsid" id="newsid">
-                {{#each news}}
-                    <option value="{{this._id}}">{{this.title}}</option>
-                {{/each}}
-            </select>
+            <label for="image">Hình ảnh: </label>
+            <input type="file" class="form-control" id="image" name="image" />
         </div>
         <button type="submit" class="btn btn-primary">Thêm quảng cáo</button>
     </form>

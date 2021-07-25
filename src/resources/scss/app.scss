@@ -4,6 +4,11 @@ html, body {
     background: url(https://kfcvietnam.com.vn/templates/images/bg.jpg) repeat top center fixed;
 }
 
+.container {
+    width: 1100px !important;
+    max-width: 1100px !important;
+}
+
 a {
     text-decoration: none !important;
 }
@@ -16,6 +21,14 @@ a {
     background: url(../img/bg/backgroud-header.jpg) top center repeat-x;
     width: 100%;
     z-index: 1020;
+}
+
+.bootstrap-select {
+    width: 100% !important;
+}
+
+.selectpicker {
+    width: 100% !important;
 }
 
 .cart-item {
@@ -165,6 +178,10 @@ a.menu-function-admin:hover{
 .menu-food-main{
     color: red;
     text-decoration: none;
+}
+
+.option-select {
+    padding-left: 10px;
 }
 
 .setup-shipper .setup-shipper-title {

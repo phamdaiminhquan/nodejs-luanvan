@@ -1,20 +1,32 @@
 <div class="container">
     <h1>CẬP NHẬT QUẢNG CÁO</h1>
-    <form class="mt-4" method="POST" action="/admin/adv/{{adv._id}}?_method=PUT">
-        <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-8">
-                <center><img style="width:100%" src="{{adv.image}}" alt="{{adv.alt}}"></center>
+    <form class="mt-4" method="POST" action="/admin/adv/{{adv._id}}?_method=PUT" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="price">Tin tức: </label>
+            <div class="bootstrap-select">
+                <select class="selectpicker form-select" name="newsid" id="newsid" aria-label="Default select example">
+                    {{#each news}}
+                    <option value="{{this._id}}">
+                        {{this.title}}
+                    </option>
+                    {{/each}}
+                </select>
             </div>
-            <div class="col-lg-2"></div>
+        </div>
+        <div class="form-group">
+            <label for="alt">Alt: </label>
+            <input type="text" class="form-control" value="{{adv.alt}}" id="alt" name="alt" />
         </div>
         <div class="form-group">
             <label for="image">Hình ảnh: </label>
-            <input type="text" class="form-control" value="{{adv.image}}" id="image" name="image" />
+            <input type="file" class="form-control" id="image" name="image" />
         </div>
-        <div class="form-group">
-            <label for="price">Alt: </label>
-            <input type="text" class="form-control" value="{{adv.alt}}" id="alt" name="alt" />
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <center><img style="width:100%" src="/upload/{{adv.image}}" alt="{{adv.alt}}"></center>
+            </div>
+            <div class="col-lg-2"></div>
         </div>
 
         <button type="submit" class="btn btn-primary">Sửa</button>

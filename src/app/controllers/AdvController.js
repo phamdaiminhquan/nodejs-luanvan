@@ -1,7 +1,8 @@
 const Adv = require('../models/Adv');
 const news_models = require('../models/News');
-const { mongooseToObject } = require('../../util/mongoose');
+const { mongooseToOject } = require('../../util/mongoose');
 const { multipleMongooseToOject } = require('../../util/mongoose');
+const multer = require('multer');
 
 class AdvController {
 
@@ -18,9 +19,10 @@ class AdvController {
     // [GET] /adv/create
     create(req, res, next) {
         news_models.find({})
-            .then((news) => { 
-                res.render('adv/create', { 
-                    news: multipleMongooseToOject(news) 
+            .then((news) => {
+                res.render('adv/create', {
+                    news: multipleMongooseToOject(news),
+                    layout: 'admain'
                 });
             })
             .catch(next);
@@ -28,29 +30,42 @@ class AdvController {
 
     // [POST] /adv/store
     store(req, res, next) {
-        const formData = req.body;
-        const adv = new Adv(formData);
-        adv.save();
-
-        res.render('adv/store')
+        const adv = Adv({
+            image: req.file.filename,
+            newsid: req.body.newsid,
+            alt: req.body.alt,
+        })
+        adv.save({})
+            .then(() => res.render('adv/store', { layout: 'admain' }))
+            .catch(next);
     }
 
     // [GET] /adv/:id/edit
     edit(req, res, next) {
-        Adv.findById({ _id: req.params.id })
-            .then((adv) => {
+        Promise.all([
+            news_models.find({}),
+            Adv.findById({ _id: req.params.id })
+        ])
+            .then(([news, adv]) => {
                 res.render('adv/edit', {
-                    adv: mongooseToObject(adv)
+                    news: multipleMongooseToOject(news),
+                    adv: mongooseToOject(adv),
+                    layout: 'admain'
                 })
             })
-            .catch(next);
     }
 
     // [PUT] /adv/:id
-    update(req, res, next) {
-        Adv.updateOne({_id: req.params.id}, req.body)
+    async update(req, res, next) {
+        const adv = await Adv.updateOne({ _id: req.params.id }, {
+            image: req.file.filename,
+            newsid: req.body.newsid,
+            alt: req.body.alt,
+        })
             .then(() => res.redirect('../adv'))
-            .catch(next);
+            .catch((err) => {
+                res.status(400).json(err)
+            })
     }
 
     // [DELETE] /adv/:id

@@ -32,12 +32,8 @@
                           <th scope="col">
                             <center>Hình ảnh</center>
                           </th>
-                          <th scope="col">
-                            <center>Src</center>
-                          </th>
-                          <th scope="col">
-                            <center>Alt</center>
-                          </th>
+                          <th scope="col">Alt</th>
+                          <th scope="col">ID Tin tức</th>
                           <th scope="col"></th>
                         </tr>
                       </thead>
@@ -45,11 +41,9 @@
                         {{#each adv}}
                         <tr>
                           <th scope="row">{{sum @index 1}}</th>
-                          <td>
-                            <center><img src="{{this.image}}" alt="{{this.alt}}" style="width: 100px"></center>
-                          </td>
-                          <td>{{this.image}}</td>
+                          <td><center><img src="/upload/{{this.image}}" alt="{{this.alt}}" style="width: 100px"></center></td>
                           <td>{{this.alt}}</td>
+                          <td>{{this.newsid}}</td>
                           <td>
                             <a href="/admin/adv/{{this._id}}/edit" class="btn btn-link">Sửa</a>
                             <a href="" class="btn btn-link" data-id="{{this._id}}" data-bs-toggle="modal"

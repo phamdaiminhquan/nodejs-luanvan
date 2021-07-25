@@ -4,7 +4,7 @@ owl.owlCarousel({
     loop:true,
     margin:10,
     autoplay:true,
-    autoplayTimeout:2000,
+    autoplayTimeout:2500,
     autoplayHoverPause:true
 });
 owl.owlCarousel({
@@ -27,10 +27,6 @@ owl.owlCarousel({
     }
 });
 owl.on('mousewheel', '.owl-stage', function (e) {
-    if (e.deltaY>0) {
-        owl.trigger('prev.owl');
-    } else {
-        owl.trigger('next.owl');
-    }
+    owl.trigger('next.owl');
     e.preventDefault();
 });
