@@ -1,23 +1,63 @@
 <div class="container">
-    <h1>THÊM MÓN ĂN</h1>
-    <form method="POST" action="/admin/foodlist/store" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="name">Tên món ăn: </label>
-            <input type="text" class="form-control" id="name" name="name" />
+    <center><h1>THÊM MÓN ĂN</h1></center>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <form method="POST" action="/admin/foodlist/store" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Tên món ăn</label>
+                    <input type="text" class="form-control" id="name" name="name" />
+                </div>
+                <div class="form-group">
+                    <label for="price">Giá</label>
+                    <input type="text" class="form-control" id="price" name="price" />
+                </div>
+                <div class="form-group">
+                    <label for="description">Mô tả</label>
+                    <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-8">
+                            <label for="image">Hình ảnh</label>
+                            <input type="file" class="form-control" id="image" name="image" onchange="imagesFileAsURL()"/>
+                        </div>
+                        <div class="col-4">
+                            <div class="show-img-upload" id="show-img-upload"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <Center>
+                        <button style=" width: 100%;" type="submit" class="btn btn-danger btn-lg">THÊM MÓN ĂN</button>
+                    </Center>
+                </div>
+            </form>
+            <div class="form-group">
+                <Center>
+                    <a href="/admin/foodlist">
+                        <button style=" width: 100%;" class="btn btn-outline-dark btn-lg">QUAY LẠI</button>
+                    </a>
+                </Center>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="description">Mô tả: </label>
-            <input type="text" class="form-control" id="description" name="description" />
-        </div>
-        <div class="form-group">
-            <label for="image">Hình ảnh: </label>
-            <input type="file" class="form-control" id="image" name="image" />
-        </div>
-        <div class="form-group">
-            <label for="price">Giá: </label>
-            <input type="text" class="form-control" id="price" name="price" />
-        </div>
-
-        <button type="submit" class="btn btn-primary">Thêm món ăn</button>
-    </form>
+    </div>
 </div>
+
+<!-- Show small image before upload --> 
+<script type="text/javascript">
+    function imagesFileAsURL() {
+        var fileSelected = document.getElementById('image').files;
+        if (fileSelected.length > 0) {
+            var fileToLoad = fileSelected[0];
+            var fileReader = new FileReader();
+            fileReader.onload = function(fileLoaderEvent) {
+                var srcData = fileLoaderEvent.target.result;
+                var newImage = document.createElement('img');
+                newImage.src = srcData;
+                document.getElementById('show-img-upload').innerHTML = newImage.outerHTML;
+            }
+            fileReader.readAsDataURL(fileToLoad);
+        }
+    }
+</script>

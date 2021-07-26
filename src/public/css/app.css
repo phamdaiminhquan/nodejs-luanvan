@@ -3,6 +3,9 @@ html, body {
   color: #707070;
   background: url(https://kfcvietnam.com.vn/templates/images/bg.jpg) repeat top center fixed; }
 
+img {
+  max-width: 100%; }
+
 .container {
   width: 1100px !important;
   max-width: 1100px !important; }
@@ -23,6 +26,17 @@ a {
 
 .selectpicker {
   width: 100% !important; }
+
+.show-img-upload {
+  background: url(../img/bg/empty_data_set.png) top center repeat-x;
+  box-shadow: -1px -1px 10px 0px #dc3545 inset;
+  border-radius: 10px;
+  background-size: 222px 130px;
+  max-width: 222px;
+  height: 130px; }
+
+.show-img-upload img {
+  border-radius: 10px; }
 
 .cart-item {
   padding: 2.222222rem;
