@@ -1,4 +1,5 @@
 const Food = require('../models/Food');
+const foodtype_model = require('../models/Foodtype');
 const adv_model = require('../models/Adv');
 const { multipleMongooseToOject } = require('../../util/mongoose');
 const { mongooseToObject } = require('../../util/mongoose');
@@ -7,37 +8,40 @@ const multer = require('multer');
 
 
 class FoodController {
+
     //[GET] /food
     index(req, res, next) {
         Promise.all([
             Food.find({}),
             adv_model.find({})
         ])
-        .then(([food, adv]) => {
-            res.render('home', { 
-                food: multipleMongooseToOject(food),
-                adv: multipleMongooseToOject(adv)
+            .then(([food, adv]) => {
+                res.render('home', {
+                    food: multipleMongooseToOject(food),
+                    adv: multipleMongooseToOject(adv)
+                })
             })
-        })
-        .catch(next);
+            .catch(next);
     }
 
-    show(req, res, next) {
-        Food.find({})
+    //[GET] /admin/foodlist
+    async show(req, res, next) {
+        const food = await Food.find({}).populate('foodtypeid')
             .then((food) => {
                 food = food.map(food => food.toObject())
                 res.render('food/foodlist', {
                     food,
                     layout: 'admain'
                 })
-
             })
             .catch(next);
     }
 
+    //[POST] /admin/foodlist/store
     store(req, res, next) {
         const food = Food({
             name: req.body.name,
+            foodtypeid: req.body.foodtypeid,
             description: req.body.description,
             image: req.file.filename,
             price: req.body.price,
@@ -47,9 +51,18 @@ class FoodController {
             .catch(next);
     }
 
+    //[GET] /admin/foodlist/create
     create(req, res, next) {
-        res.render('food/create', { layout: 'admain' });
+        foodtype_model.find({})
+            .then((foodtype) => 
+                res.render('food/create', {
+                    foodtype: multipleMongooseToOject(foodtype),
+                    layout: 'admain'
+                })
+            )
+            .catch(next);
     }
+
     // [GET] /food/:slug
 
 

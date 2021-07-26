@@ -22,7 +22,9 @@ app.engine(
         extname: '.hbs',
         helpers: {
             sum: (a, b) => a + b,
-        }
+        },
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true,   
     }),
 );
 app.set('view engine', 'hbs');

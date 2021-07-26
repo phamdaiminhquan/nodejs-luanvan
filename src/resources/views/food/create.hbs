@@ -1,12 +1,26 @@
 <div class="container">
-    <center><h1>THÊM MÓN ĂN</h1></center>
+    <center>
+        <h1>THÊM MÓN ĂN</h1>
+    </center>
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
+        <div class="col-8 offset-2">
             <form method="POST" action="/admin/foodlist/store" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name">Tên món ăn</label>
                     <input type="text" class="form-control" id="name" name="name" />
+                </div>
+                <div class="form-group">
+                    <label for="name">Loại thức ăn</label>
+                    <div class="bootstrap-select">
+                        <select class="selectpicker form-select" name="foodtypeid" id="foodtypeid"
+                            aria-label="Default select example">
+                            {{#foodtype}}
+                            <option value="{{_id}}">
+                                {{nameType}}
+                            </option>
+                            {{/foodtype}}
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="price">Giá</label>
@@ -20,7 +34,8 @@
                     <div class="row">
                         <div class="col-8">
                             <label for="image">Hình ảnh</label>
-                            <input type="file" class="form-control" id="image" name="image" onchange="imagesFileAsURL()"/>
+                            <input type="file" class="form-control" id="image" name="image"
+                                onchange="imagesFileAsURL()" />
                         </div>
                         <div class="col-4">
                             <div class="show-img-upload" id="show-img-upload"></div>
@@ -44,14 +59,14 @@
     </div>
 </div>
 
-<!-- Show small image before upload --> 
+<!-- Show small image before upload -->
 <script type="text/javascript">
     function imagesFileAsURL() {
         var fileSelected = document.getElementById('image').files;
         if (fileSelected.length > 0) {
             var fileToLoad = fileSelected[0];
             var fileReader = new FileReader();
-            fileReader.onload = function(fileLoaderEvent) {
+            fileReader.onload = function (fileLoaderEvent) {
                 var srcData = fileLoaderEvent.target.result;
                 var newImage = document.createElement('img');
                 newImage.src = srcData;

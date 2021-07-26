@@ -30,36 +30,28 @@
                       <thead>
                         <tr>
                           <th scope="col"></th>
-                          <th scope="col">
-                            <center>Hình ảnh</center>
-                          </th>
-                          <th scope="col">
-                            <center>Tên món ăn</center>
-                          </th>
-                          <th scope="col">
-                            <center>Giá</center>
-                          </th>
-                          <th scope="col">
-                            <center>Mô tả</center>
-                          </th>
+                          <th scope="col">Hình ảnh</th>
+                          <th scope="col">Tên món ăn</th>
+                          <th scope="col">Loại thức ăn</th>
+                          <th scope="col">Giá</th>
                           <th scope="col"></th>
                         </tr>
                       </thead>
                       <tbody>
-                        {{#each food}}
+                        {{#food}}
                         <tr>
                           <th scope="row">{{sum @index 1}}</th>
-                          <td><img src="/upload/{{this.image}}" alt="{{this.name}}" style="width: 100px"></td>
-                          <td>{{this.name}}</td>
-                          <td>{{this.price}}</td>
-                          <td>{{this.description}}</td>
+                          <td><img src="/upload/{{image}}" alt="{{name}}" style="width: 100px"></td>
+                          <td>{{name}}</td>
+                          <td>{{foodtypeid.nameType}}</td>
+                          <td>{{price}}</td>
                           <td>
-                            <a href="foodlist/{{this._id}}/edit" class="btn btn-link">Sửa</a>
-                            <a href="" class="btn btn-link" data-id="{{this._id}}" data-bs-toggle="modal"
+                            <a href="foodlist/{{_id}}/edit" class="btn btn-link">Sửa</a>
+                            <a href="" class="btn btn-link" data-id="{{_id}}" data-bs-toggle="modal"
                               data-bs-target="#delete-food-modal">Xóa</a>
                           </td>
                         </tr>
-                        {{/each}}
+                        {{/food}}
                       </tbody>
                     </table>
 
