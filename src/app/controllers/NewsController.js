@@ -3,6 +3,17 @@ const { mongooseToObject } = require('../../util/mongoose');
 
 class NewsController {
 
+    //[GET] /news/:slug
+    details(req, res, next) {
+        News.findOne({ slug: req.params.slug })
+            .then((news) =>
+                res.render('news/details', { 
+                    news: mongooseToObject(news) 
+                })
+            )
+            .catch(next);
+    }
+
     show(req, res, next) {
         News.find({})
             .then((news) => {
@@ -22,6 +33,7 @@ class NewsController {
         news.save();
         res.render('news/store');
     }
+
     edit(req, res, next) {
         News.findById({ _id: req.params.id })
             .then((news) => {
