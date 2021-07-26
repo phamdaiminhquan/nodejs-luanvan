@@ -1,3 +1,5 @@
+<script src="../js/cart.js"></script>
+
 <nav class="navbar navbar-menu navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -19,8 +21,11 @@
         <div class="cart-box">
             <a href="/cart">
                 <button class="btn btn-danger"><i class="fas fa-cart-arrow-down"></i></button>
-                <span class="cart-text">GIỎ HÀNG</span>
+                <span class="cart-text" id="cart-text">GIỎ HÀNG</span>
             </a>
         </div>
     </div>
 </nav>
+<script>
+    addAmountInnerID('cart-text');
+</script>

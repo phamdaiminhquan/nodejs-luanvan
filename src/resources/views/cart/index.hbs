@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-8">
                     <div id="gio-hang">
-                        
+
                     </div>
                 </div>
                 <div class="col-12 col-md-12 col-lg-4">
@@ -24,8 +24,16 @@
 <script>
     showListItemCart();
 
+    function xoa(id) {
+        var nodeCart = document.getElementById(id + 'main');
+        nodeCart.parentNode.removeChild(nodeCart);
+        deleteItemCartInLocal(id);
+        addAmountInnerID('cart-text');
+    }
+
     // tăng một số lượng của sản phẩm
-    function tang(id){
+    function tang(id) {
+        var nodeCart = document.getElementById(id);
         var ListItemCart = getListItemCart();
         for (var i = 0; i < ListItemCart.length; i++) {
             var itemCart = ListItemCart[i];
@@ -34,17 +42,18 @@
             }
         }
         saveListItemCartInLocal(ListItemCart);
+
         // lấy ô chứa số lượng
         var nodeCart = document.getElementById(id);
-        var sl =  nodeCart.parentElement.querySelector('#quantity')
+        var sl = nodeCart.parentElement.querySelector('#quantity')
         // Lấy ô chứa tổng tiền
-        var totalPrice =  nodeCart.parentElement.parentElement.querySelector('#totalPrice')
+        var totalPrice = nodeCart.parentElement.parentElement.querySelector('#totalPrice')
         var price = itemCart.amount * itemCart.price;
         // thay đổi giá và số lượng
-        totalPrice.innerText = ""
-        totalPrice.innerText = price
-        sl.innerText = ""
-        sl.innerText = itemCart.amount
+        totalPrice.innerText = "";
+        totalPrice.innerText = price;
+        sl.innerText = "";
+        sl.innerText = itemCart.amount;
     }
 
     // giảm một số lượng của sản phẩm
@@ -54,21 +63,26 @@
         for (var i = 0; i < ListItemCart.length; i++) {
             var itemCart = ListItemCart[i];
             if (itemCart.id == id) {
+                if (itemCart.amount == 1) {
+                    itemCart.amount = 1;
+                    break;
+                }
                 itemCart.amount--;
             }
         }
         saveListItemCartInLocal(ListItemCart);
+
         // lấy ô chứa số lượng
         var nodeCart = document.getElementById(id);
-        var sl =  nodeCart.parentElement.querySelector('#quantity')
+        var sl = nodeCart.parentElement.querySelector('#quantity');
         // Lấy ô chứa tổng tiền
-        var totalPrice =  nodeCart.parentElement.parentElement.querySelector('#totalPrice')
+        var totalPrice = nodeCart.parentElement.parentElement.querySelector('#totalPrice');
         var price = itemCart.amount * itemCart.price;
         // thay đổi giá và số lượng
-        totalPrice.innerText = ""
-        totalPrice.innerText = price
-        sl.innerText = ""
-        sl.innerText = itemCart.amount
+        totalPrice.innerText = "";
+        totalPrice.innerText = price;
+        sl.innerText = "";
+        sl.innerText = itemCart.amount;
     }
 
     // hiển thị danh sách sản phẩm lên giỏ hàng
@@ -93,12 +107,13 @@
         var price = itemCart.amount * itemCart.price;
         var truoc = '\'';
         var id = truoc + itemCart.id + truoc;
-        var html = '<div class="cart-item">\n' +
+        var idmain = itemCart.id + 'main';
+        var html = '<div class="cart-item" id="' + idmain + '">\n' +
             '    <div class="row">\n' +
             '        <div class="col-8">' + itemCart.name + '</div>\n' +
             '        <div class="col-4">\n' +
-            '            <div class="float-right">\n' +
-            '                <a href=""><i class="far fa-times-circle"></i></a>\n' +
+            '            <div class="float-right" >\n' +
+            '                <a onclick="xoa(' + id + ')"><i class="far fa-times-circle"></i></a>\n' +
             '            </div>\n' +
             '        </div>\n' +
             '    </div>\n' +

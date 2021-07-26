@@ -13,14 +13,15 @@
         </div>
         <div class="card-button">
             <a href="/food/{{this.slug}}"><button type="button" class="btn btn-outline-dark">TÙY CHỈNH</button></a>
-            <button onclick="onClickAdd('{{this._id}}','{{this.name}}','{{this.description}}','{{this.image}}','{{this.price}}')" type="button" class="btn btn-danger">ĐẶT HÀNG</button>
+            <button
+                onclick="onClickAdd('{{this._id}}','{{this.name}}','{{this.description}}','{{this.image}}','{{this.price}}')"
+                type="button" class="btn btn-danger">ĐẶT HÀNG</button>
         </div>
     </div>
 </div>
 {{/each}}
 
 <script>
-
     function onClickAdd(id, name, description, image, price) {
 
         var ListItemCart = getListItemCart();
@@ -39,5 +40,7 @@
             ListItemCart.push(itemCart);
         }
         saveListItemCartInLocal(ListItemCart);
+
+        addAmountInnerID('cart-text');
     }
 </script>

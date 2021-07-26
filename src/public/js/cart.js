@@ -27,5 +27,32 @@ function saveListItemCartInLocal(listItemCart) {
     localStorage.setItem(keyLocalStorageItemCart, jsonListItemCart);
 }
 
+function deleteItemCartInLocal(id) {
+    var ListItemCart = getListItemCart();
+    var idxoa = -1;
+    for (var i = 0; i < ListItemCart.length; i++) {
+        var itemCart = ListItemCart[i];
+        if (itemCart.id == id) {
+            idxoa = i;
+        }
+    }
+    for (var i = idxoa; i < ListItemCart.length - 1; i++) {
+        ListItemCart[i] = ListItemCart[i+1];
+    }
+    if (idxoa != -1) {
+        -- ListItemCart.length;
+    }
+    saveListItemCartInLocal(ListItemCart);
+}
 
-console.log(getListItemCart());
+function addAmountInnerID(idHTML) {
+    var nodeCart = document.getElementById(idHTML);
+    var ListItemCart = getListItemCart();
+    var sl = ListItemCart.length;
+    nodeCart.innerText = sl;
+    if (sl == 0) {
+        var cart = 'GIỎ HÀNG';
+        nodeCart.innerText = cart;
+    }
+    
+}

@@ -26,7 +26,7 @@ owl.owlCarousel({
         }
     }
 });
-owl.on('mousewheel', '.owl-stage', function (e) {
-    owl.trigger('next.owl');
-    e.preventDefault();
-});
+// owl.on('mousewheel', '.owl-stage', function (e) {
+//     owl.trigger('next.owl');
+//     e.preventDefault();
+// });
