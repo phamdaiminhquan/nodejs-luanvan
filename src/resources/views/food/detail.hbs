@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container bg-white">
     <div class="box_pro_detail">
         <div class="row">
             <div class="col-8">
@@ -14,10 +14,10 @@
                         <div class="items-slide">
                             <div class="owl-carousel owl-theme">
                                 <div class="item">
-                                    <img src="{{food.image}}" alt="{{food.name}}">
+                                    <img src="/upload/{{food.image}}" alt="{{food.name}}">
                                 </div>
                                 <div class="item">
-                                    <img src="{{food.image}}" alt="{{food.name}}">
+                                    <img src="/upload/{{food.image}}" alt="{{food.name}}">
                                 </div>
                             </div>
                         </div>
@@ -27,13 +27,21 @@
                 <div>
                     <h5 class="food-title">{{food.name}}</h5>
                 </div>
-                
+
                 <div>{{food.description}}</div>
-                <div>{{food.price}}</div>
+                <div><span>{{food.price}}<small>.000đ</small></span></div>
                 <div>Tong Tien</div>
                 <div>
-                    <button class="btn btn-danger">THÊM VÀO GIỎ HÀNG</button>
-                    <button class="btn btn-outline-dark">QUAY LẠI THỰC ĐƠN</button>
+                    <div class="row">
+                        <div class="form-group">
+                            <button style=" width: 100%;" class="btn btn-danger btn-lg">THÊM VÀO GIỎ HÀNG</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <a href="/"><button style=" width: 100%;" class="btn btn-outline-dark btn-lg">QUAY LẠI THỰC ĐƠN</button></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -2,11 +2,15 @@
 
 <div class="container">
     <div class="bg-white">
-        {{>nav-bar}}
+        <div class="row sticky-top">
+            {{>nav-bar}}
+        </div>
         <div class="cart-content">
             <center>
-                <h1>GIỎ HÀNG CỦA BẠN</h1>
+                <h1><i class="fas fa-cart-arrow-down"></i> GIỎ HÀNG CỦA BẠN</h1>
             </center>
+            <br>
+            <br>
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-8">
                     <div id="gio-hang">
@@ -21,68 +25,121 @@
     </div>
 </div>
 
+<form name="submit-cart-form" method="POST"></form> 
+
 <script>
     showListItemCart();
+    showTotalMoney();
+
+    function showTotalMoney() { 
+        var listItemCart = getListItemCart();
+        var totalMoney = 0;
+        for (var i = 0; i < listItemCart.length; i++) {
+            var money = listItemCart[i].price * listItemCart[i].amount;
+            totalMoney += money;
+        }
+        var moneyTotal = document.getElementById('total-money');
+        moneyTotal.innerText = '';
+        moneyTotal.innerHTML = '<span>' + totalMoney + '<small>.000</small></span>';
+    }
+
+    function submitCartString() {
+        var listItemCart = getListItemCart();
+        var HTML = listItemCartToString(listItemCart);
+
+        var submitCartForm = document.forms['submit-cart-form'];
+
+            submitCartForm.action = '/cart/123456'+'?q='+ HTML +'';
+            submitCartForm.submit();
+    }
+
+    function listItemCartToString(listItemCart) {
+        var allString = '';
+        for (var i = 0; i < listItemCart.length; i++) {
+            allString = allString + itemCartToString(listItemCart[i]);
+        }
+        return allString;
+    }
+
+    function itemCartToString(itemCart) {
+        var string = '/' +itemCart.id + '-' + itemCart.amount;
+        return string;
+    }
 
     function xoa(id) {
         var nodeCart = document.getElementById(id + 'main');
         nodeCart.parentNode.removeChild(nodeCart);
         deleteItemCartInLocal(id);
         addAmountInnerID('cart-text');
+        showTotalMoney();
     }
 
     // tăng một số lượng của sản phẩm
     function tang(id) {
-        var nodeCart = document.getElementById(id);
         var ListItemCart = getListItemCart();
+        var sl;
+        var price;
         for (var i = 0; i < ListItemCart.length; i++) {
             var itemCart = ListItemCart[i];
             if (itemCart.id == id) {
                 itemCart.amount++;
+                sl = itemCart.amount;
+                price = itemCart.price;
             }
         }
         saveListItemCartInLocal(ListItemCart);
 
         // lấy ô chứa số lượng
         var nodeCart = document.getElementById(id);
-        var sl = nodeCart.parentElement.querySelector('#quantity')
+
         // Lấy ô chứa tổng tiền
-        var totalPrice = nodeCart.parentElement.parentElement.querySelector('#totalPrice')
-        var price = itemCart.amount * itemCart.price;
+        var totalPrice = document.getElementById(id + 'price');
+        price = sl * price;
+
         // thay đổi giá và số lượng
         totalPrice.innerText = "";
-        totalPrice.innerText = price;
-        sl.innerText = "";
-        sl.innerText = itemCart.amount;
+        totalPrice.innerHTML = '<span>' + price + '<small>.000đ</small></span>';
+        nodeCart.innerText = "";
+        nodeCart.innerText = sl;
+
+        showTotalMoney();
     }
 
     // giảm một số lượng của sản phẩm
     function giam(id) {
         var ListItemCart = getListItemCart();
-
+        var sl;
+        var price;
         for (var i = 0; i < ListItemCart.length; i++) {
             var itemCart = ListItemCart[i];
             if (itemCart.id == id) {
                 if (itemCart.amount == 1) {
                     itemCart.amount = 1;
+                    sl = itemCart.amount;
+                    price = itemCart.price;
                     break;
                 }
                 itemCart.amount--;
+                sl = itemCart.amount;
+                price = itemCart.price;
             }
         }
         saveListItemCartInLocal(ListItemCart);
 
         // lấy ô chứa số lượng
         var nodeCart = document.getElementById(id);
-        var sl = nodeCart.parentElement.querySelector('#quantity');
+
         // Lấy ô chứa tổng tiền
-        var totalPrice = nodeCart.parentElement.parentElement.querySelector('#totalPrice');
-        var price = itemCart.amount * itemCart.price;
+        var totalPrice = document.getElementById(id + 'price');
+        price = sl * price;
+
         // thay đổi giá và số lượng
         totalPrice.innerText = "";
-        totalPrice.innerText = price;
-        sl.innerText = "";
-        sl.innerText = itemCart.amount;
+        totalPrice.innerHTML = '<span>' + price + '<small>.000đ</small></span>';
+        nodeCart.innerText = "";
+        nodeCart.innerText = sl;
+
+        showTotalMoney();
     }
 
     // hiển thị danh sách sản phẩm lên giỏ hàng
@@ -108,33 +165,35 @@
         var truoc = '\'';
         var id = truoc + itemCart.id + truoc;
         var idmain = itemCart.id + 'main';
+        var idprice = itemCart.id + 'price';
         var html = '<div class="cart-item" id="' + idmain + '">\n' +
-            '    <div class="row">\n' +
-            '        <div class="col-8">' + itemCart.name + '</div>\n' +
+            '    <div class="row form-group">\n' +
+            '        <div class="col-8"><h3>' + itemCart.name + '</h3></div>\n' +
             '        <div class="col-4">\n' +
             '            <div class="float-right" >\n' +
             '                <a onclick="xoa(' + id + ')"><i class="far fa-times-circle"></i></a>\n' +
             '            </div>\n' +
             '        </div>\n' +
             '    </div>\n' +
-            '    <div class="row">\n' +
-            '        <div class="col-2"><img class="cart-item-img" src="/upload/' + itemCart.image + '" alt=""></div>\n' +
-            '        <div class="col-10">' + itemCart.description + '</div>\n' +
+            '    <div class="row form-group">\n' +
+            '        <div class="col-3"><img class="cart-item-img" src="/upload/' + itemCart.image + '" alt=""></div>\n' +
+            '        <div class="col-9">' + itemCart.description + '</div>\n' +
             '    </div>\n' +
             '    <hr>\n' +
-            '    <div class="row">\n' +
+            '    <div class="row form-group">\n' +
             '        <div class="col-6 top">\n' +
             '           <a class="giam btn-giam" onclick="giam(' + id + ')">\n' +
             '               <img class="giam" src="../img/icon/giam.png" alt="giam">\n' +
             '           </a>\n' +
-            '           <span class="sl" id="quantity">' + itemCart.amount + '</span>\n' +
-            '           <a class="tang btn-tang" id="' + itemCart.id + '" onclick="tang(' + id + ')">\n' +
+            '           <span class="sl" id="' + itemCart.id + '">' + itemCart.amount + '</span>\n' +
+            '           <a class="tang btn-tang" onclick="tang(' + id + ')">\n' +
             '               <img class="tang" src="../img/icon/tang.png" alt="tang">\n' +
             '           </a>\n' +
             '        </div>\n' +
-            '        <div class="col-6 down"><div class="float-right" id="totalPrice">' + price + '</div></div>\n' +
+            '        <div class="col-6 down"><div class="float-right" id="' + idprice + '"><span>' + price + '<small>.000đ</small></span></div></div>\n' +
             '    </div>\n' +
             '</div>';
         return html;
     }
 </script>
+

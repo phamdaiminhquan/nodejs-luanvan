@@ -64,6 +64,15 @@ class FoodController {
     }
 
     // [GET] /food/:slug
+    detail(req, res, next) {
+        Food.findOne({ slug: req.params.slug })
+            .then((food) => {
+                res.render('food/detail', { 
+                    food: mongooseToObject(food)
+                })
+            })
+            .catch(next);
+    }
 
 
     // [GET] /food/:id/edit

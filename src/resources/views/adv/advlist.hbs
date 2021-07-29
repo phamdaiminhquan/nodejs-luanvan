@@ -10,7 +10,7 @@
     <div class="content-wrapper">
       <div class="content-header">
         <center>
-          <h2 style="color: red">;">DANH SÁCH QUẢNG CÁO</h2>
+          <h2 style="color: red"><i class="fab fa-adversal"></i> DANH SÁCH QUẢNG CÁO</h2>
         </center>
         <div class="breadcrumb">
           <a class="btn btn-primary btn-sm" href="/admin/adv/create" role="button">
@@ -33,24 +33,24 @@
                             <center>Hình ảnh</center>
                           </th>
                           <th scope="col">Alt</th>
-                          <th scope="col">ID Tin tức</th>
+                          <th scope="col">Tin tức</th>
                           <th scope="col"></th>
                         </tr>
                       </thead>
                       <tbody>
-                        {{#each adv}}
+                        {{#adv}}
                         <tr>
                           <th scope="row">{{sum @index 1}}</th>
-                          <td><center><img src="/upload/{{this.image}}" alt="{{this.alt}}" style="width: 100px"></center></td>
-                          <td>{{this.alt}}</td>
-                          <td>{{this.newsid}}</td>
+                          <td><center><img src="/upload/{{image}}" alt="{{alt}}" style="width: 100px"></center></td>
+                          <td>{{alt}}</td>
+                          <td>{{newsid.title}}</td>
                           <td>
-                            <a href="/admin/adv/{{this._id}}/edit" class="btn btn-link">Sửa</a>
-                            <a href="" class="btn btn-link" data-id="{{this._id}}" data-bs-toggle="modal"
+                            <a href="/admin/adv/{{_id}}/edit" class="btn btn-link">Sửa</a>
+                            <a href="" class="btn btn-link" data-id="{{_id}}" data-bs-toggle="modal"
                               data-bs-target="#delete-food-modal">Xóa</a>
                           </td>
                         </tr>
-                        {{/each}}
+                        {{/adv}}
                       </tbody>
                     </table>
 

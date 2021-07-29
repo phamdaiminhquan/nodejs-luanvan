@@ -11,7 +11,7 @@
     <div class="content-wrapper">
       <div class="content-header">
         <center>
-          <h2 style="color: red">;">DANH SÁCH MÓN ĂN</h2>
+          <h2 style="color: red"><i class="fa fa-leaf"></i> DANH SÁCH MÓN ĂN</h2>
         </center>
         <div class="breadcrumb">
           <a class="btn btn-primary btn-sm" href="/admin/foodlist/create" role="button">
@@ -44,7 +44,7 @@
                           <td><img src="/upload/{{image}}" alt="{{name}}" style="width: 100px"></td>
                           <td>{{name}}</td>
                           <td>{{foodtypeid.nameType}}</td>
-                          <td>{{price}}</td>
+                          <td><span class="float-right">{{price}}<small>.000đ</small></span></td>
                           <td>
                             <a href="foodlist/{{_id}}/edit" class="btn btn-link">Sửa</a>
                             <a href="" class="btn btn-link" data-id="{{_id}}" data-bs-toggle="modal"

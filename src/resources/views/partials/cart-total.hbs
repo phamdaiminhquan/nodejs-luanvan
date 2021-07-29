@@ -1,26 +1,28 @@
 <div class="cart-total">
-    <div class="row">
-        <div class="col-6">TỔNG TIỀN HÀNG: </div>
-        <div class="col-6">50.000</div>
+    <div class="row form-group">
+        <div class="col-8" style="font-size: 22px; font-weight: bold;">TỔNG TIỀN HÀNG: </div>
+        <div class="col-4"><div class="float-right" id="total-money" style="font-size: 22px; font-weight: bold;">50.000</div></div>
     </div>
-    <div class="row">
+    {{!-- <div class="row form-group">
         <div class="col-6">KHUYẾN MÃI: </div>
-        <div class="col-6">50.000</div>
+        <div class="col-6"><div class="float-right">50.000</div></div>
     </div>
-    <div class="row">
+    <div class="row form-group">
         <div class="col-6">PHÍ GIAO HÀNG: </div>
-        <div class="col-6">50.000</div>
+        <div class="col-6"><div class="float-right">- 50.000</div></div>
     </div>
-    <div class="row">
+    <div class="row form-group">
         <div class="col-6">TỔNG CỘNG: </div>
-        <div class="col-6">50.000</div>
+        <div class="col-6"><div class="float-right">50.000</div></div>
+    </div> --}}
+    <div class="row">
+        <div class="form-group">
+            <button style=" width: 100%;" class="btn btn-danger btn-lg" id="btn-submit-cart" onclick="submitCartString()">THANH TOÁN</button>
+        </div>
     </div>
     <div class="row">
-        <div class="col-6">
-            <button class="btn btn-outline-dark">QUAY LẠI TRANG CHỦ</button>
-        </div>
-        <div class="col-6">
-            <button class="btn btn-danger">THANH TOÁN</button>
+        <div class="form-group">
+            <a href="/"><button style=" width: 100%;" class="btn btn-outline-dark btn-lg">QUAY LẠI THỰC ĐƠN</button></a>
         </div>
     </div>
 </div>

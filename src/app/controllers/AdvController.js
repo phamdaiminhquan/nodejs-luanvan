@@ -7,11 +7,14 @@ const multer = require('multer');
 class AdvController {
 
     // [GET] /adv
-    index(req, res, next) {
-        Adv.find({})
+    async index(req, res, next) {
+        const adv = await Adv.find({}).populate('newsid')
             .then((adv) => {
                 adv = adv.map(adv => adv.toObject())
-                res.render('adv/advlist', { adv })
+                res.render('adv/advlist', {
+                    adv,
+                    layout: 'admain'
+                })
             })
             .catch(next);
     }

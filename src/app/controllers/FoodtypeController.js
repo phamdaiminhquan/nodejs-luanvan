@@ -7,7 +7,10 @@ class FoodtypeController {
         Foodtype.find({})
             .then((foodtype) => {
                 foodtype = foodtype.map(foodtype => foodtype.toObject())
-                res.render('foodtype/foodtypelist', { foodtype })
+                res.render('foodtype/foodtypelist', { 
+                    foodtype,
+                    layout: 'admain'
+                })
             })
             .catch(next);
     }

@@ -10,7 +10,7 @@
     <div class="content-wrapper">
       <div class="content-header">
         <center>
-          <h2 style="color: red">;">DANH SÁCH LOẠI MÓN ĂN</h2>
+          <h2 style="color: red"><i class="fab fa-canadian-maple-leaf"></i> DANH SÁCH LOẠI MÓN ĂN</h2>
         </center>
         <div class="breadcrumb">
           <a class="btn btn-primary btn-sm" href="/admin/foodtypelist/createtype" role="button">
@@ -37,17 +37,17 @@
                       </thead>
                       <tbody>
 
-                        {{#each foodtype}}
+                        {{#foodtype}}
                         <tr>
                           <th scope="row">{{sum @index 1}}</th>
-                          <td>{{this.nametype}}</td>
+                          <td>{{nameType}}</td>
                           <td>
                             <a href="/admin/foodtypelist/{{this._id}}/edit" class="btn btn-link">Sửa</a>
                             <a href="" class="btn btn-link" data-id="{{this._id}}" data-bs-toggle="modal"
                               data-bs-target="#delete-food-modal">Xóa</a>
                           </td>
                         </tr>
-                        {{/each}}
+                        {{/foodtype}}
 
                       </tbody>
                     </table>
