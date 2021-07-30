@@ -96,6 +96,7 @@ a {
     margin-right: 4px;
 }
 
+
 .card {
     width: 260px;
     height: 375px;
@@ -323,4 +324,23 @@ a.menu-function-admin:hover{
     height: 100%;
     line-height: 120px;
     text-align: center;
+}
+
+// STAFF
+// order item
+.order-item {
+    margin: auto;
+    padding: 1rem;
+    box-shadow: 0px 3px 7px 0px #0000001c;
+    border-radius: 0.3333333333333333em;
+    margin-bottom: 2.222222222222222em;
+}
+
+.avatar-customer-order img{
+    width: 100px;
+    height: 100px;
+}
+
+.customer-box {
+    float: left;
 }

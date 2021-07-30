@@ -9,6 +9,10 @@ const Orderdetails = new Schema({
         type: Schema.Types.ObjectId,        
         ref: "Food"
     },
+    orderid: {
+        type: Schema.Types.ObjectId,        
+        ref: "Order"
+    },
     amount: { type: String, required: true, },
 }, { 
     timestamps: true,

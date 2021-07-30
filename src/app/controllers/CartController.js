@@ -1,4 +1,5 @@
 const Food = require('../models/Food');
+const Order_model = require('../models/Order');
 const Orderdetails_model = require('../models/Orderdetails');
 const { mongooseToObject } = require('../../util/mongoose');
 
@@ -13,6 +14,12 @@ class CartController {
 
     //[POST] /cart/:id
     create(req, res, next) {
+        // tạo đơn hàng và lưu lại tổng tiền
+        const order = Order_model({
+            totalmoney: req.body.totalmoney,
+        })
+        order.save({})
+
         // Cắt để lấy từng sản phẩm trong giỏ
         var String = req.query.q;
         var chuoicat = '';
@@ -31,6 +38,7 @@ class CartController {
                         idFoodInCart = chuoicat.slice(0,j);
                         const orderdetails = Orderdetails_model({
                             foodid: idFoodInCart,
+                            orderid: order._id,
                             amount: amount,
                         })
                         orderdetails.save({})

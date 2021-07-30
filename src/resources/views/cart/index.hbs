@@ -25,22 +25,29 @@
     </div>
 </div>
 
-<form name="submit-cart-form" method="POST"></form> 
+<form name="submit-cart-form" method="POST">
+     <div id="total-order-money">
+
+     </div>
+</form>
 
 <script>
     showListItemCart();
     showTotalMoney();
 
-    function showTotalMoney() { 
+    function showTotalMoney() {
         var listItemCart = getListItemCart();
         var totalMoney = 0;
         for (var i = 0; i < listItemCart.length; i++) {
             var money = listItemCart[i].price * listItemCart[i].amount;
             totalMoney += money;
         }
-        var moneyTotal = document.getElementById('total-money');
+        var moneyTotal = document.getElementById('total-money-show');
         moneyTotal.innerText = '';
         moneyTotal.innerHTML = '<span>' + totalMoney + '<small>.000</small></span>';
+
+        var totalOrderMoney = document.getElementById('total-order-money');
+        totalOrderMoney.innerHTML =  '<input type="hidden" id="totalmoney" name="totalmoney" value="' + totalMoney + '">'
     }
 
     function submitCartString() {
@@ -49,8 +56,14 @@
 
         var submitCartForm = document.forms['submit-cart-form'];
 
-            submitCartForm.action = '/cart/123456'+'?q='+ HTML +'';
-            submitCartForm.submit();
+        submitCartForm.action = '/cart/123456' + '?q=' + HTML + '';
+        submitCartForm.submit();
+        deleteListItemCartInLocal();
+    }
+
+    function deleteListItemCartInLocal() {
+        var jsonListItemCart = '[]';
+        localStorage.setItem(keyLocalStorageItemCart, jsonListItemCart);
     }
 
     function listItemCartToString(listItemCart) {
@@ -62,7 +75,7 @@
     }
 
     function itemCartToString(itemCart) {
-        var string = '/' +itemCart.id + '-' + itemCart.amount;
+        var string = '/' + itemCart.id + '-' + itemCart.amount;
         return string;
     }
 
@@ -196,4 +209,3 @@
         return html;
     }
 </script>
-

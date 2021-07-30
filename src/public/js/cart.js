@@ -15,7 +15,6 @@ function createItemCart(id, name, description, image, price, amount) {
 function getListItemCart() {
     var listItemCart = new Array();
     var jsonListItemCart = localStorage.getItem(keyLocalStorageItemCart);
-
     if (jsonListItemCart != null) {
         listItemCart = JSON.parse(jsonListItemCart);
     }
