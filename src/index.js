@@ -16,17 +16,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Connect to DB
 db.connect();
 
-app.engine(
-    'hbs',
+app.engine('hbs', 
     handlebars({
         extname: '.hbs',
-        helpers: {
-            sum: (a, b) => a + b,
-        },
+        // defaultLayout: 'user.hbs',
+        helpers: require('./app/helpers/handlebars.js'),
+        runtimeOptions: {
         allowProtoPropertiesByDefault: true,
-        allowProtoMethodsByDefault: true,   
-    }),
-);
+        allowProtoMethodsByDefault: true,
+        },
+    })
+)
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 

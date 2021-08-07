@@ -281,5 +281,9 @@ a.menu-function-admin:hover {
   width: 100px;
   height: 100px; }
 
+.avatar-customer img {
+  width: 100px;
+  height: 100px; }
+
 .customer-box {
   float: left; }

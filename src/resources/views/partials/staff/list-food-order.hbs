@@ -1,0 +1,15 @@
+<div class="box-left-details">
+    {{#orderdetails}}
+    <div class="row form-group">
+        <div class="col-2"><b>{{amount}} x</b></div>
+        <div class="col-8">
+            <div class="row"><b>{{foodid.name}}</b></div>
+            <div class="row"><i>{{foodid.description}}</i></div>
+        </div>
+        <div class="col-2"><div class="float-right">
+            <span class="float-right">{{foodid.price}}<small>.000đ</small></span>
+        </div></div>
+    </div>
+    <hr>
+    {{/orderdetails}}
+</div>

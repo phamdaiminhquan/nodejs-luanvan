@@ -1,0 +1,54 @@
+<div class="container bg-white box_pro_detail">
+    <div class="row order-detail">
+        <div class="col-7">
+            {{>staff/list-food-order}}
+        </div>
+        <div class="col-5">
+            <div class="avatar-customer">
+                <center><img src="https://i.pinimg.com/originals/eb/b0/2a/ebb02aedec9bc74f65e38311c7e14d34.png"
+                        alt="avatar"></center>
+            </div>
+            <div class="name-customer">
+                <center> <b>Minh Quân</b> </center>
+            </div>
+            <div class="type-customer">
+                <center><i>Khách hàng vãng lai</i> </center>
+            </div>
+            <br>
+            <hr>
+            <div class="total-price">
+                Tổng tiền món (giá gốc): <span class="float-right">{{order.totalmoney}}<small>.000đ</small></span>
+            </div>
+            <hr>
+            <br>
+            <div class="row form-group">
+                <div class="col-5">
+                    <div class="">Mã đơn hàng:</div>
+                </div>
+                <div class="col-7">
+                    <div class="float-right">{{order._id}}</div>
+                </div>
+                <div class="col-5">
+                    <div class="">Thời gian đặt đơn:</div>
+                </div>
+                <div class="col-7">
+                    <div class="float-right">{{order.createdAt}}</div>
+                </div>
+                <div class="col-5">
+                    <div class="">Địa chỉ giao hàng:</div>
+                </div>
+                <div class="col-7">
+                    <div class="float-right">180 Cao lỗ, P4, Q8, TP.HCM</div>
+                </div>
+            </div>
+            <form action="/staff/confirm/{{order._id}}" method="post">
+                <input type="hidden" name="orderstatus" value="2">
+                <button class="btn btn-danger btn-lg form-group" style="width: 100%;" type="submit">HOÀN THÀNH</button>
+            </form>
+            <form action="/staff/cancel/{{order._id}}" method="post">
+                <input type="hidden" name="orderstatus" value="3">
+                <button class="btn btn-outline-dark btn-lg" style="width: 100%;">HỦY ĐƠN</button>
+            </form>
+        </div>
+    </div>
+</div>

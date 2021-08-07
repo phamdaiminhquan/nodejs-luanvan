@@ -1,41 +1,46 @@
 {{#order}}
 <div class="order-item form-group row">
     <div class="col-9">
-        <div class="row form-group">
-            <div class="col-10 create-at">{{createdAt}}</div>
-            <div class="col-2 status-order"><button type="button" class="btn btn-success btn-sm" disabled>Đơn mới</button></div>
-        </div>
-        <div class="row">
-            <div class="">
-                <div class="customer-box avatar-customer-order">
-                    <img src="https://i.pinimg.com/originals/eb/b0/2a/ebb02aedec9bc74f65e38311c7e14d34.png"
-                        alt="avatar">
-                </div>
-                <br>
-                <div class="customer-box name-customer">
-                    Minh Quân
-                </div>
-                <div class="row">
-                    <div class="row">
-                        <div class="col-4 offset-2"> Món</div>
-                        <div class="col-6">
-                            <div class="float-right">Tổng tiền</div>
-                        </div>
+        <a href="../staff/orderdetails/{{_id}}">
+            <div class="row form-group">
+                <div class="col-10 create-at">{{createdAt}}</div>
+                <div class="col-2 status-order"><button type="button" class="btn btn-info btn-sm"  disabled>Đơn mới</button></div>
+            </div>
+            <div class="row">
+                <div class="">
+                    <div class="customer-box avatar-customer-order">
+                        <img src="https://i.pinimg.com/originals/eb/b0/2a/ebb02aedec9bc74f65e38311c7e14d34.png"
+                            alt="avatar">
+                    </div>
+                    <br>
+                    <div class="customer-box name-customer">
+                        Minh Quân
                     </div>
                     <div class="row">
-                        <div class="col-4 offset-2">12</div>
-                        <div class="col-6"><span class="float-right">{{totalmoney}}<small>.000đ</small></span></div>
+                        <div class="row">
+                            <div class="col-4 offset-2"> Món</div>
+                            <div class="col-6">
+                                <div class="float-right">Tổng tiền</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 offset-2">12</div>
+                            <div class="col-6"><span class="float-right">{{totalmoney}}<small>.000đ</small></span></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-3">
         <form action="/staff/confirm/{{_id}}" method="post">
             <input type="hidden" name="orderstatus" value="1">
             <button class="btn btn-danger btn-lg form-group" style="width: 100%;" type="submit">XÁC NHẬN</button>
         </form>
-        <button class="btn btn-outline-dark btn-lg" style="width: 100%;">HỦY ĐƠN</button>
+        <form action="/staff/cancel/{{_id}}" method="post">
+            <input type="hidden" name="orderstatus" value="3">
+            <button class="btn btn-outline-dark btn-lg" style="width: 100%;">HỦY ĐƠN</button>
+        </form>
     </div>
 </div>
 {{/order}}
