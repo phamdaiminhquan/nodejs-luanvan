@@ -3,6 +3,7 @@ const staffRouter = require('./staff');
 const foodRouter = require('./food');
 const authRouter = require('./auth');
 const cartRouter = require('./cart');
+const orderRouter = require('./order');
 
 function route(app) {
     
@@ -12,6 +13,7 @@ function route(app) {
     app.use('/', foodRouter);
     app.use('/admin', adminRouter);
     app.use('/staff', staffRouter);
+    app.use('/order', orderRouter);
     
 }
 

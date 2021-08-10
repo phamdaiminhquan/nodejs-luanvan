@@ -18,9 +18,9 @@ class CartController {
         const order = Order_model({
             totalmoney: req.body.totalmoney,
         })
-        order.save({})
 
         // Cắt để lấy từng sản phẩm trong giỏ
+        var orderAmount = 0;
         var String = req.query.q;
         var chuoicat = '';
         var duoi = String.length;
@@ -42,13 +42,16 @@ class CartController {
                             amount: amount,
                         })
                         orderdetails.save({})
-                            .then(() => res.redirect('/'))
-                            .catch(next);
+                        orderAmount ++;
                     }
                 }
                 duoi = i;
             }
         }
+        order.amount = orderAmount
+        order.save()
+            .then(() => res.redirect('/'))
+            .catch(next);
     }
 }
 

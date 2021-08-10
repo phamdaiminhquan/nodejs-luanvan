@@ -3,8 +3,10 @@
     <div class="col-9">
         <a href="../staff/orderdetails/{{_id}}">
             <div class="row form-group">
-                <div class="col-10 create-at">{{createdAt}}</div>
-                <div class="col-2 status-order"><button type="button" class="btn btn-info btn-sm"  disabled>Đơn mới</button></div>
+                <div class="col-10 create-at">{{dateFormat createdAt format="mm:hh DD/MM/YYYY"}}</div>
+                <div class="col-2 status-order">
+                    <button type="button" class="btn btn-info btn-sm" disabled>Đơn mới</button>
+                </div>
             </div>
             <div class="row">
                 <div class="">
@@ -24,7 +26,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-4 offset-2">12</div>
+                            <div class="col-4 offset-2">{{amount}}</div>
                             <div class="col-6"><span class="float-right">{{totalmoney}}<small>.000đ</small></span></div>
                         </div>
                     </div>
@@ -37,10 +39,55 @@
             <input type="hidden" name="orderstatus" value="1">
             <button class="btn btn-danger btn-lg form-group" style="width: 100%;" type="submit">XÁC NHẬN</button>
         </form>
-        <form action="/staff/cancel/{{_id}}" method="post">
-            <input type="hidden" name="orderstatus" value="3">
+        <a class="btn btn-link" data-id="{{_id}}" data-bs-toggle="modal" data-bs-target="#delete-food-modal"
+            style="width: 100%;">
             <button class="btn btn-outline-dark btn-lg" style="width: 100%;">HỦY ĐƠN</button>
-        </form>
+        </a>
     </div>
 </div>
 {{/order}}
+
+{{!-- Confirm delete course--}}
+<div class="modal fade" id="delete-food-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Điền lý do hủy đơn</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <textarea name="reason-cancel" id="reason-cancel" cols="62" rows="10"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="btn-delete-food">Hủy đơn hàng</button>
+                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Thoát</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form name="delete-food-form" method="POST">
+    <input type="hidden" name="orderstatus" value="3">
+    <input type="hidden" name="reason" id="reason">
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var foodId;
+        var deleteForm = document.forms['delete-food-form'];
+        var btnDeleteFood = document.getElementById('btn-delete-food');
+        //var reason = document.getElementById('reason-in-form');
+
+        $('#delete-food-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            foodId = button.data('id');
+        });
+
+        btnDeleteFood.onclick = function () {
+            var message = $('textarea#reason-cancel').val();
+            var reason = $('input#reason').val(message);
+            deleteForm.action = '/staff/cancel/' + foodId + '?_method=DELETE';
+            deleteForm.submit();
+        }
+    })
+</script>

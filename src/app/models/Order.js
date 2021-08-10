@@ -6,6 +6,10 @@ mongoose.plugin(slug);
 
 const Order = new Schema({
     totalmoney: { type: String},
+    amount: { 
+        type: String,
+        default: ''
+    },
     orderstatus: { type: String}
 }, { 
     timestamps: true,

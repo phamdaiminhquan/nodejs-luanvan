@@ -13,6 +13,6 @@ router.get('/orderdetails-accomplished/:id', orderController.orderdetailsaccompl
 
 router.post('/confirm/:id', orderController.confirm);
 router.post('/complete/:id', orderController.complete);
-router.post('/cancel/:id', orderController.cancel);
+router.delete('/cancel/:id', orderController.cancel);
 
 module.exports = router;

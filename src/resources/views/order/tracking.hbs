@@ -1,12 +1,9 @@
 <div class="container bg-white box_pro_detail">
     <div class="row">
         <div>
-            <a href="/staff/order-confirmed">
+            <a href="/">
                 <button class="btn btn-light"><i class="fas fa-undo-alt"></i> QUAY LẠI</button>
             </a>
-            <div class="float-right">
-                <button type="button" class="btn btn-warning" disabled>Đang thực hiện</button>
-            </div>
         </div>
     </div>
     <div class="row">
@@ -49,20 +46,15 @@
     <div class="row order-detail">
         <div class="col-7">
             {{>staff/list-food-order}}
-            <div class="total-price">
-                <b>Tổng tiền món (giá gốc): <span
-                        class="float-right">{{order.totalmoney}}<small>.000đ</small></span></b>
+            <div class="total-price"> 
+                <b>Tổng tiền món (giá gốc): <span class="float-right">{{order.totalmoney}}<small>.000đ</small></span></b>
             </div>
         </div>
         <div class="col-5">
-            <form action="/staff/confirm/{{order._id}}" method="post">
-                <input type="hidden" name="orderstatus" value="2">
-                <button class="btn btn-danger btn-lg form-group" style="width: 100%;" type="submit">HOÀN THÀNH</button>
-            </form>
-            <form action="/staff/cancel/{{order._id}}" method="post">
+            {{!-- <form action="/staff/cancel/{{order._id}}" method="post">
                 <input type="hidden" name="orderstatus" value="3">
                 <button class="btn btn-outline-dark btn-lg" style="width: 100%;">HỦY ĐƠN</button>
-            </form>
+            </form> --}}
         </div>
     </div>
     <hr>
