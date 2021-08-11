@@ -1,0 +1,101 @@
+<div class="delivery_box mt-4" id="paymentMethods">
+    <h3 class="delivery_title pb-2">CHỌN HÌNH THỨC THANH TOÁN</h3>
+
+    <input type="hidden" name="paymentType" id="paymentType" value="">
+
+    <div class="payment_item mt-3">
+        <div href="javascript:void(0);" class="btn btn-block bd-highlight btn_payment" id="payment_1"
+            onclick="selectPaymentMethod('offline',this);">
+            <div class="d-flex align-items-center btn_header">
+                <span class="mr-auto bd-highlight"><strong>Thanh toán khi nhận hàng</strong></span>
+                <img class="bd-highlight"
+                    src="https://kfcvietnam.com.vn/uploads/icon/62e800747c09d1f088a826648131045f.png">
+                <i class="far fa-circle" id="icon"></i>
+            </div>
+        </div>
+    </div>
+    <div class="payment_item mt-3">
+        <div href="javascript:void(0);" class="btn btn-block bd-highlight btn_payment" id="payment_2"
+            onclick="selectPaymentMethod('visa',this);">
+            <div class="d-flex align-items-center btn_header">
+                <span class="mr-auto bd-highlight"><strong>Thanh toán bằng thẻ quốc tế: Visa, MasterCard,
+                        JCB</strong></span>
+                <img class="bd-highlight"
+                    src="https://kfcvietnam.com.vn/uploads/icon/41e2c314b42b2d5bda51e6ad554675ed.png">
+                <i class="far fa-circle" id="icon"></i>
+            </div>
+        </div>
+    </div>
+    <div class="payment_item mt-3">
+        <div href="javascript:void(0);" class="btn btn-block bd-highlight btn_payment" id="payment_3"
+            onclick="selectPaymentMethod('atm',this);">
+            <div class="d-flex align-items-center btn_header">
+                <span class="mr-auto bd-highlight"><strong>Thanh toán bằng thẻ ATM nội địa/Internet Banking (Miễn
+                        phí)</strong></span>
+                <img class="bd-highlight"
+                    src="https://kfcvietnam.com.vn/uploads/icon/bd14dfab5d2b096faef7b4417ad511f0.png">
+                <i class="far fa-circle" id="icon"></i>
+            </div>
+        </div>
+    </div>
+    <div class="payment_item mt-3">
+        <div href="javascript:void(0);" class="btn btn-block bd-highlight btn_payment" id="payment_5"
+            onclick="selectPaymentMethod('zalopay',this);">
+            <div class="d-flex align-items-center btn_header">
+                <span class="mr-auto bd-highlight"><strong>Thanh toán bằng ví điện tử ZaloPay</strong></span>
+                <img class="bd-highlight"
+                    src="https://kfcvietnam.com.vn/uploads/icon/ad5ee7ea27a10274305b132bc8db5366.png">
+                <i class="far fa-circle" id="icon"></i>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <center>
+            <button style=" width: 100%;" type="submit" id="submit-payment" class="btn btn-danger btn-lg">TIẾP
+                TỤC</button>
+        </center>
+    </div>
+</div>
+
+<form action="/order/completion" id="order-completion"></form>
+
+<script>
+    var paymentType;
+    var btnSubmitPayment = document.getElementById('submit-payment');
+    var formOrderCompletion = document.getElementById('order-completion');
+
+    function selectPaymentMethod(payment, ele) {
+        $("input[name='paymentType']").val(payment).addClass('active');
+        $('#paymentMethods .btn_payment').removeClass('active');
+        $(ele).addClass('active');
+
+        $('.btn_header #icon').removeClass('fas fa-check');
+        $('.btn_header #icon').addClass('far fa-circle');
+        $('.active .btn_header #icon').removeClass('far fa-circle');
+        $('.active .btn_header #icon').addClass('fas fa-check');
+
+
+        return true;
+    }
+
+    var keyLocalStorageItemCart = 'Payment';
+
+    function createPayment(paymentType) {
+        var payment = new Object()
+        payment.payment = paymentType;
+        return payment;
+    }
+
+    function savePayment(payment) {
+        var jsonPayment = JSON.stringify(payment);
+        localStorage.setItem(keyLocalStorageItemCart, jsonPayment);
+    }
+
+    btnSubmitPayment .onclick = function () {
+        var paymentType = $('input#paymentType').val();
+        var payment = createPayment(paymentType);
+        savePayment(payment);
+        formOrderCompletion.submit();
+    }
+</script>

@@ -28,29 +28,30 @@
     </div>
     <div class="form-group">
         <center>
-            <button style=" width: 100%;" type="submit" class="btn btn-danger btn-lg">TIẾP TỤC</button>
+            <button style=" width: 100%;" type="submit" id="submit-address" class="btn btn-danger btn-lg">TIẾP
+                TỤC</button>
         </center>
     </div>
 </div>
 
+<form action="/order/payment" id="order-payment" ></form>
+<script src="../js/address.js"></script>
+
 <script>
+    
     document.addEventListener('DOMContentLoaded', function () {
-        
-        var foodId;
-        var deleteForm = document.forms['delete-food-form'];
-        var btnDeleteFood = document.getElementById('btn-delete-food');
-        //var reason = document.getElementById('reason-in-form');
-
-        $('#delete-food-modal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            foodId = button.data('id');
-        });
-
-        btnDeleteFood.onclick = function () {
-            var message = $('textarea#reason-cancel').val();
-            var reason = $('input#reason').val(message);
-            deleteForm.action = '/staff/cancel/' + foodId + '?_method=DELETE';
-            deleteForm.submit();
+        var btnSubmitAddress = document.getElementById('submit-address');
+        var formOrderPayment = document.getElementById('order-payment');
+        btnSubmitAddress.onclick = function () {
+            var inputFullname = $('input#inputFullname').val();
+            var inputPhone = $('input#inputPhone').val();
+            var inputEmail = $('input#inputEmail').val();
+            var inputCity = $('input#inputCity').val();
+            var inputDistrict = $('input#inputDistrict').val();
+            var inputAddress = $('input#inputAddress').val();
+            var address = createAddress(inputFullname, inputPhone, inputEmail, inputCity, inputDistrict, inputAddress);
+            saveAddress(address);
+            formOrderPayment.submit();
         }
     })
 </script>

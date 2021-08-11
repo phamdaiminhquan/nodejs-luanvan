@@ -142,6 +142,18 @@ class OrderController {
         })
     }
 
+    //[GET] /payment
+    async payment(req, res, next) {
+        res.render('order/payment', {
+        })
+    }
+
+    //[GET] /completion
+    async completion(req, res, next) {
+        res.render('order/completion', {
+        })
+    }
+    
 }
 
 
