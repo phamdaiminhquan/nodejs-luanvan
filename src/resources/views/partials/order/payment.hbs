@@ -30,8 +30,7 @@
         <div href="javascript:void(0);" class="btn btn-block bd-highlight btn_payment" id="payment_3"
             onclick="selectPaymentMethod('atm',this);">
             <div class="d-flex align-items-center btn_header">
-                <span class="mr-auto bd-highlight"><strong>Thanh toán bằng thẻ ATM nội địa/Internet Banking (Miễn
-                        phí)</strong></span>
+                <span class="mr-auto bd-highlight"><strong>Thanh toán bằng thẻ ATM nội địa/Internet Banking</strong></span>
                 <img class="bd-highlight"
                     src="https://kfcvietnam.com.vn/uploads/icon/bd14dfab5d2b096faef7b4417ad511f0.png">
                 <i class="far fa-circle" id="icon"></i>
@@ -65,6 +64,7 @@
     var btnSubmitPayment = document.getElementById('submit-payment');
     var formOrderCompletion = document.getElementById('order-completion');
 
+    // hàm chọn phương thức thanh toán
     function selectPaymentMethod(payment, ele) {
         $("input[name='paymentType']").val(payment).addClass('active');
         $('#paymentMethods .btn_payment').removeClass('active');
@@ -74,16 +74,25 @@
         $('.btn_header #icon').addClass('far fa-circle');
         $('.active .btn_header #icon').removeClass('far fa-circle');
         $('.active .btn_header #icon').addClass('fas fa-check');
-
-
         return true;
     }
 
     var keyLocalStorageItemCart = 'Payment';
 
     function createPayment(paymentType) {
+        var write = '';
+        if (paymentType == 'offline') {
+            write = 'Thanh toán khi nhận hàng';
+        }else if (paymentType == 'visa') {
+            write = 'Thanh toán bằng thẻ quốc tế: Visa, MasterCard, JCB';
+        }else if (paymentType == 'atm') {
+            write = 'Thanh toán bằng thẻ ATM nội địa/Internet Banking';
+        }else if (paymentType == 'zalopay') {
+            write = 'Thanh toán bằng ví điện tử ZaloPay';
+        }
         var payment = new Object()
         payment.payment = paymentType;
+        payment.write = write;
         return payment;
     }
 

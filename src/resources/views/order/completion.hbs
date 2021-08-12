@@ -1,1 +1,35 @@
-<h1>ok</h1>
+<div class="container bg-white">
+    <div class="checkout_new_box">
+        <div class="col-12 mb-4">
+            <div class="nav_menu_header mb-4 text-center">
+                Quy trình đặt hàng
+            </div>
+            <div class="progress-checkout d-flex justify-content-center">
+                <ul class="nav nav-pills nav-justified mb-3 col-lg-7 p-0">
+                    <li class="nav-item no-shadow">
+                        <div>
+                            <p class="above"><button type="button" class="btn"><span>1</span></button></p>
+                            <p class="below"><span class="text">Địa chỉ giao hàng</span></p>
+                        </div>
+                    </li>
+                    <li class="nav-item  no-shadow">
+                        <div>
+                            <p class="above"><button type="button" class="btn"><span>2</span></button></p>
+                            <p class="below"><span class="text">Xác nhận và thanh toán</span></p>
+                        </div>
+                    </li>
+                    <li class="nav-item active">
+                        <div>
+                            <p class="above"><button type="button" class="btn"><span>3</span></button></p>
+                            <p class="below"><span class="text">Hoàn tất đơn hàng</span></p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-left col-12 col-lg-12">
+            {{>order/completion}}
+        </div>
+    </div>
+
+</div>

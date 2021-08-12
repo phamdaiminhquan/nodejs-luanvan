@@ -53,5 +53,67 @@ function addAmountInnerID(idHTML) {
         var cart = 'GIỎ HÀNG';
         nodeCart.innerText = cart;
     }
-    
+}
+
+function saveTotalOrderMoneyInLocal(totalMoney) {
+    var keyLocalStorageItemCart = 'TotalOrderMoney';
+    var totalOrderMoney = new Object()
+    totalOrderMoney.totalOrderMoney = totalMoney;
+    console.log(totalOrderMoney);
+    var jsonTotalOrderMoney = JSON.stringify(totalOrderMoney);
+    localStorage.setItem(keyLocalStorageItemCart, jsonTotalOrderMoney);
+}
+
+// hiển thị danh sách sản phẩm lên giỏ hàng
+function showListItemCartInnerID(idHTML) {
+    var listItemCart = getListItemCart();
+    var HTML = listItemCartToHTML(listItemCart);
+    var nodeCart = document.getElementById(idHTML);
+    nodeCart.innerHTML = HTML;
+}
+
+// chuyển một danh sách thành html
+function listItemCartToHTML(listItemCart) {
+    var allHTML = '';
+    for (var i = 0; i < listItemCart.length; i++) {
+        allHTML = allHTML + itemCartToHTML(listItemCart[i]);
+    }
+    return allHTML;
+}
+
+// chuyển một đối tượng thành html
+function itemCartToHTML(itemCart) {
+    var price = itemCart.amount * itemCart.price;
+    var truoc = '\'';
+    var id = truoc + itemCart.id + truoc;
+    var idmain = itemCart.id + 'main';
+    var idprice = itemCart.id + 'price';
+    var html = '<div class="cart-item" id="' + idmain + '">\n' +
+        '    <div class="row form-group">\n' +
+        '        <div class="col-8"><h3>' + itemCart.name + '</h3></div>\n' +
+        '        <div class="col-4">\n' +
+        '            <div class="float-right" >\n' +
+        '                <a onclick="xoa(' + id + ')"><i class="far fa-times-circle"></i></a>\n' +
+        '            </div>\n' +
+        '        </div>\n' +
+        '    </div>\n' +
+        '    <div class="row form-group">\n' +
+        '        <div class="col-3"><img class="cart-item-img" src="/upload/' + itemCart.image + '" alt=""></div>\n' +
+        '        <div class="col-9">' + itemCart.description + '</div>\n' +
+        '    </div>\n' +
+        '    <hr>\n' +
+        '    <div class="row form-group">\n' +
+        '        <div class="col-6 top">\n' +
+        '           <a class="giam btn-giam" onclick="giam(' + id + ')">\n' +
+        '               <img class="giam" src="../img/icon/giam.png" alt="giam">\n' +
+        '           </a>\n' +
+        '           <span class="sl" id="' + itemCart.id + '">' + itemCart.amount + '</span>\n' +
+        '           <a class="tang btn-tang" onclick="tang(' + id + ')">\n' +
+        '               <img class="tang" src="../img/icon/tang.png" alt="tang">\n' +
+        '           </a>\n' +
+        '        </div>\n' +
+        '        <div class="col-6 down"><div class="float-right" id="' + idprice + '"><span>' + price + '<small>.000đ</small></span></div></div>\n' +
+        '    </div>\n' +
+        '</div>';
+    return html;
 }

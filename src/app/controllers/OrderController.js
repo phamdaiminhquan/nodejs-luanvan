@@ -150,6 +150,9 @@ class OrderController {
 
     //[GET] /completion
     async completion(req, res, next) {
+        
+
+
         res.render('order/completion', {
         })
     }
