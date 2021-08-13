@@ -56,32 +56,31 @@ function itemCartToHTML(itemCart) {
 
 ///Tổng tiền
 function showTotalOrderMoneyInnerID(idHTML) {
+    var TotalOrderMoney = getTotalOrderMoney();
+    var nodeCart = document.getElementById(idHTML);
+    nodeCart.innerHTML = TotalOrderMoney;
+    return true;
+}
+
+function getTotalOrderMoney() {
     var jsonTotalOrderMoney = localStorage.getItem(keyLocalStorageTotalOrderMoney);
     if (jsonTotalOrderMoney != null) {
         var TotalOrderMoney = JSON.parse(jsonTotalOrderMoney);
     }
-    var nodeCart = document.getElementById(idHTML);
-    nodeCart.innerHTML = TotalOrderMoney.totalOrderMoney;
-    return true;
+    return TotalOrderMoney.totalOrderMoney;
 }
 
 //Địa chỉ nhận Hàng
 function showAddressInnerID(idHTML) {
-    var jsonAddress = localStorage.getItem(keyLocalStorageAddress);
-    if (jsonAddress != null) {
-        var address = JSON.parse(jsonAddress);
-    }
-    var jsonPayment = localStorage.getItem(keyLocalStoragePayment);
-    if (jsonPayment != null) {
-        var payment = JSON.parse(jsonPayment);
-    }
+    var address = getAddress();
+    var payment = getPayment();
     var HTML = '<div class="delivery_des delivery_des_new">\n'+
     '    <div class="items">\n'+
     '        <h3 class="delivery_title mt-2 mb-2 new_deli_title">'+ address.fullName +'</h3>\n'+
-    '        <p><span>Điện thoại:</span> '+ address.phone +'</p>\n'+
-    '        <p><span>Email:</span>'+ address.fullName +'</p>\n'+
+    '        <p><span>Điện thoại: </span> '+ address.phone +'</p>\n'+
+    '        <p><span>Email: </span>'+ address.email +'</p>\n'+
     '        <p><span>Địa chỉ: </span>'+ address.address +'</p>\n'+
-//    '        <p><span>Phường/Xã: </span>'+ address.wards +'</p>\n'+
+    '        <p><span>Phường/Xã: </span>'+ address.wards +'</p>\n'+
     '        <p><span>Quận/Huyện: </span>'+ address.district +'</p>\n'+
     '        <p><span>Tỉnh/Thành phố: </span>'+ address.city +'</p>\n'+
     '    </div>\n'+
@@ -97,4 +96,44 @@ function showAddressInnerID(idHTML) {
     var nodeCart = document.getElementById(idHTML);
     nodeCart.innerHTML = HTML;
     return true;
+}
+
+function getAddress() {
+    var jsonAddress = localStorage.getItem(keyLocalStorageAddress);
+    if (jsonAddress != null) {
+        var address = JSON.parse(jsonAddress);
+    }
+    return address;
+}
+
+function getPayment() {
+    var jsonPayment = localStorage.getItem(keyLocalStoragePayment);
+    if (jsonPayment != null) {
+        var payment = JSON.parse(jsonPayment);
+    }
+    return payment;
+}
+
+function addValueInnerInputID(inputID, value) {
+    var input = document.getElementById(inputID);
+    input.val(value);
+    return true;
+}
+
+function listItemCartToString(listItemCart) {
+    var allString = '';
+    for (var i = 0; i < listItemCart.length; i++) {
+        allString = allString + itemCartToString(listItemCart[i]);
+    }
+    return allString;
+}
+
+function itemCartToString(itemCart) {
+    var string = '/' + itemCart.id + '-' + itemCart.amount;
+    return string;
+}
+
+function deleteListItemCartInLocal() {
+    var jsonListItemCart = '[]';
+    localStorage.setItem(keyLocalStorageItemCart, jsonListItemCart);
 }

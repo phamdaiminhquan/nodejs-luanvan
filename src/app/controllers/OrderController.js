@@ -150,11 +150,13 @@ class OrderController {
 
     //[GET] /completion
     async completion(req, res, next) {
-        
-
-
         res.render('order/completion', {
         })
+    }
+
+    //[POST] /order
+    async order(req, res, next) {
+        res.jsonp(req.body);
     }
     
 }

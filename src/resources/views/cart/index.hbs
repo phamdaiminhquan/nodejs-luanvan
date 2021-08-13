@@ -46,39 +46,10 @@
         saveTotalOrderMoneyInLocal(totalMoney);
     }
 
-    function submitCartString() {
-        var listItemCart = getListItemCart();
-        var HTML = listItemCartToString(listItemCart);
-
-        var submitCartForm = document.forms['submit-cart-form'];
-
-        submitCartForm.action = '/cart/123456' + '?q=' + HTML + '';
-        submitCartForm.submit();
-        deleteListItemCartInLocal();
-    }
-
     function submitCart() {
         var submitCartForm = document.forms['submit-cart-form'];
         submitCartForm.action = '/order/address';
         submitCartForm.submit();
-    }
-
-    function deleteListItemCartInLocal() {
-        var jsonListItemCart = '[]';
-        localStorage.setItem(keyLocalStorageItemCart, jsonListItemCart);
-    }
-
-    function listItemCartToString(listItemCart) {
-        var allString = '';
-        for (var i = 0; i < listItemCart.length; i++) {
-            allString = allString + itemCartToString(listItemCart[i]);
-        }
-        return allString;
-    }
-
-    function itemCartToString(itemCart) {
-        var string = '/' + itemCart.id + '-' + itemCart.amount;
-        return string;
     }
 
     function xoa(id) {

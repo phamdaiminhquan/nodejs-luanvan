@@ -6,6 +6,12 @@
             <div class="address" id="address">
 
             </div>
+            <div class="form-group">
+                <Center>
+                    <button style=" width: 100%;" onclick="submitWithFormID('submitOrder')"
+                        class="btn btn-danger btn-lg">THÊM MÓN ĂN</button>
+                </Center>
+            </div>
         </div>
         <div class="col-12 col-lg-7">
             <h3 class="delivery_title mb-4 mt-4">Bạn đã đặt</h3>
@@ -37,6 +43,18 @@
         </div>
     </div>
 </div>
+<form id="submitOrder" name="submitOrder" method="post">
+    <input type="hidden" name="cartString" id="cartString" value="">
+    <input type="hidden" name="totalOrderMoney" id="totalOrderMoney" value="">
+    <input type="hidden" name="fullName" id="inputFullname" value="">
+    <input type="hidden" name="phone" id="inputPhone" value="">
+    <input type="hidden" name="email" id="inputEmail" value="">
+    <input type="hidden" name="city" id="inputCity" value="">
+    <input type="hidden" name="district" id="inputDistrict" value="">
+    <input type="hidden" name="wards" id="inputWards" value="">
+    <input type="hidden" name="address" id="inputAddress" value="">
+    <input type="hidden" name="paymentType" id="paymentType" value="">
+</form>
 
 <script src="../js/completion.js"></script>
 
@@ -45,4 +63,29 @@
     showTotalOrderMoneyInnerID('price_item_new');
     showTotalOrderMoneyInnerID('total_price');
     showAddressInnerID('address')
+
+    /// Gửi thông tin nhận hàng, giỏ hàng, phương thức thanh toán lên sever
+    function submitWithFormID(formID) {
+        var listItemCart = getListItemCart();
+        var cartString = listItemCartToString(listItemCart);
+
+        var TotalOrderMoney = getTotalOrderMoney();
+        var address = getAddress();
+        var payment = getPayment();
+        var submitCartForm = document.forms[formID];
+
+        $("input[name='cartString']").val(cartString);
+        $("input[name='totalOrderMoney']").val(TotalOrderMoney);
+        $("input[name='fullName']").val(address.fullName);
+        $("input[name='phone']").val(address.phone);
+        $("input[name='email']").val(address.email);
+        $("input[name='city']").val(address.city);
+        $("input[name='district']").val(address.district);
+        $("input[name='wards']").val(address.wards);
+        $("input[name='address']").val(address.address);
+        $("input[name='paymentType']").val(payment.payment);
+        submitCartForm.action = '/order/order';
+        submitCartForm.submit();
+        //deleteListItemCartInLocal();
+    }
 </script>
