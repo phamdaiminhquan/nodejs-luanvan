@@ -10,7 +10,12 @@ const Order = new Schema({
         type: String,
         default: ''
     },
-    orderstatus: { type: String}
+    payment: { type: String},
+    orderstatus: { type: String},
+    idAddress: {
+        type: Schema.Types.ObjectId,        
+        ref: "address"
+    },
 }, { 
     timestamps: true,
 });

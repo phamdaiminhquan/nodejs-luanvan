@@ -1,6 +1,7 @@
 const Order_model = require('../models/Order');
 const Orderdetails_model = require('../models/Orderdetails');
 const Ordercancel_model = require('../models/Ordercancel');
+const Address_model = require('../models/Address');
 const { mongooseToObject } = require('../../util/mongoose');
 const { multipleMongooseToOject } = require('../../util/mongoose');
 
@@ -156,9 +157,59 @@ class OrderController {
 
     //[POST] /order
     async order(req, res, next) {
-        res.jsonp(req.body);
+        // lưu lại địa chỉ
+        const address = Address_model({
+            fullName: req.body.fullName,
+            phone: req.body.phone,
+            email: req.body.email,
+            city: req.body.city,
+            district: req.body.district,
+            wards: req.body.wards,
+            address: req.body.address
+        })
+        address.save()
+
+        // lưu lại đơn hàng
+        const order = Order_model({
+            idAddress: address._id,
+            totalmoney: req.body.totalOrderMoney,
+            payment: req.body.paymentType
+        })
+
+        /// lưu lại chi tiết đơn hàng
+        // Cắt để lấy từng sản phẩm trong giỏ
+        var orderAmount = 0;
+        var String = req.body.cartString;
+        var chuoicat = '';
+        var duoi = String.length;
+        for (var i = String.length; i >= 0; i--) {
+            if (String[i] == '/') {
+                chuoicat = String.slice(i + 1, duoi);
+                //Cắt để lấy id và số lượng
+                var idFoodInCart;
+                var amount;
+                var duoi2 = chuoicat.length;
+                for (var j = chuoicat.length; j >= 0; j--) {
+                    if (chuoicat[j] == '-') {
+                        amount = chuoicat.slice(j + 1, duoi2);
+                        idFoodInCart = chuoicat.slice(0, j);
+                        const orderdetails = Orderdetails_model({
+                            foodid: idFoodInCart,
+                            orderid: order._id,
+                            amount: amount,
+                        })
+                        orderdetails.save({})
+                        orderAmount++;
+                    }
+                }
+                duoi = i;
+            }
+        }
+        order.amount = orderAmount
+        order.save()
+            .then(() => res.redirect('/order/tracking/' + order._id))
+            .catch(next);
     }
-    
 }
 
 

@@ -377,3 +377,20 @@ a.menu-function-admin:hover {
 
 .btn_payment:hover img, .btn_payment.active img {
   filter: invert(1) grayscale(1); }
+
+.tks_title {
+  font-size: 40px;
+  color: #e4002b;
+  font-weight: bold;
+  text-align: center;
+  font-family: "National2Condensed";
+  width: 100%;
+  line-height: 1; }
+
+.tks_title span {
+  display: block;
+  font-size: 60px; }
+
+.tks_info {
+  border-radius: 10px;
+  box-shadow: 0px 0px 7px 1px black; }
