@@ -17,7 +17,7 @@
                             <br><a href="#"><strong><u>lịch sử giao dịch</u></strong></a>
                         </p>
                         <p class="mt-2">Thông tin về đơn hàng sẽ được gửi về địa chỉ email:
-                            <strong>phamdaiminh456@gmail.com</strong>
+                            <strong>{{address.email}}</strong>
                         </p>
                         <p>Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.</p>
                     </div>
@@ -37,31 +37,42 @@
                 </div>
             </div>
             <div class="col-5">
-                <div class="row flex-row">
-                    <div class="name-customer">
-                        <b>Minh Quân</b>
+                <br>
+                <div class="name-customer">
+                    <b>Minh Quân</b>
+                    <span>
                         <span>
-                            <span>
-                                <i class="fas fa-money-bill font15 text-danger"></i>
-                            </span>
+                            <i class="fas fa-money-bill font15 text-danger"></i>
                         </span>
-                    </div>
-                    <div class="type-customer"><i>Khách hàng vãng lai</i></div>
-                    <div class="">
-                        <div class="float-left">Địa chỉ giao hàng: 180 Cao lỗ, P4, Q8, TP.HCM</div>
-                    </div>
+                    </span>
                 </div>
+                <div class="type-customer"><i>Khách hàng vãng lai</i></div>
             </div>
         </div>
     </div>
     <hr>
-    <br>
     <div class="row order-detail">
+        <div class="col-5 col-lg-5">
+            <div class="head_3">Thông tin giao hàng</div>
+            <div class="">
+                <div class="float-left">Tên người nhận: {{address.fullName}}</div>
+            </div>
+            <div class="">
+                <div class="float-left">Số điện thoại: {{address.phone}}</div>
+            </div>
+            <div class="">
+                <div class="float-left">Địa chỉ giao hàng:
+                    {{address.address}},
+                    {{address.wards}},
+                    {{address.district}},
+                    {{address.city}}
+                </div>
+            </div>
+        </div>
         <div class="col-7">
             {{>staff/list-food-order}}
             <div class="total-price">
-                <b>Tổng tiền món (giá gốc): <span
-                        class="float-right">{{order.totalmoney}}<small>.000đ</small></span></b>
+                <b>Tổng tiền món (giá gốc): <spanclass="float-right">{{order.totalmoney}}<small>.000đ</small></span></b>
             </div>
         </div>
     </div>

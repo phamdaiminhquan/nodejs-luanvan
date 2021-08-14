@@ -8,13 +8,17 @@ img {
     max-width: 100%;
 }
 
+a {
+    text-decoration: none !important;
+}
+
 .container {
     width: 1100px !important;
     max-width: 1100px !important;
 }
 
-a {
-    text-decoration: none !important;
+.display-flex {
+    display: flex;
 }
 
 .price-bold {
@@ -29,8 +33,20 @@ a {
     font-size: 25px !important;
     font-weight: bold;
     color: #e22323 !important;
-    border-top: 1px solid #e1e1e1;
     padding: 5px 0px;
+}
+
+.border-radius{
+    border-radius: 100px !important;
+}
+
+.box-shadow {
+    box-shadow: 0px 2px 7px 3px #d7d7d7;
+    border-radius: 10px;
+}
+
+.btn-next {
+    border-radius: 0px 0px 10px 0px !important;
 }
 
 .head_3 {
@@ -44,6 +60,10 @@ a {
 
 .bg-white {
     background-color: #fff;
+}
+
+.bg-pink {
+    background-color: rgb(255, 121, 121);
 }
 
 .bgcolor {
@@ -357,13 +377,21 @@ a.menu-function-admin:hover{
     margin: auto;
     padding: 1rem;
     box-shadow: 0px 3px 7px 0px #0000001c;
-    border-radius: 0.3333333333333333em;
+    border-radius: 30px;
     margin-bottom: 2.222222222222222em;
+}
+
+.order-item:hover {
+    box-shadow: 0px 5px 7px 2px #a8b8c8;
+    transition: 0.1s;
+    background-color: #00a6ff1c;
 }
 
 .avatar-customer-order img{
     width: 100px;
     height: 100px;
+    box-shadow: 0px 1px 3px 1px #e400ff47;
+    border-radius: 50%;
 }
 
 .avatar-customer img{
@@ -432,6 +460,12 @@ a.menu-function-admin:hover{
     padding: 1.333333333333333em!important;
 }
 
+.delivery_box_2 {
+    border-radius: 0.3333333333333333em;
+    overflow: hidden;
+    padding: 1.333333333333333em!important;
+}
+
 .btn_payment {
     border: 2px solid #000 !important;
     border-radius: 5px;
@@ -455,6 +489,10 @@ a.menu-function-admin:hover{
     filter: invert(1) grayscale(1);
 }
 
+.next-bar {
+    box-shadow: 0px -1px 8px -2px #d7d7d7;
+}
+
 /// tracking
 
 .tks_title {
@@ -462,9 +500,7 @@ a.menu-function-admin:hover{
     color: #e4002b;
     font-weight: bold;
     text-align: center;
-    font-family: "National2Condensed";
     width: 100%;
-    line-height: 1;
 }
 
 .tks_title span {
@@ -474,5 +510,5 @@ a.menu-function-admin:hover{
 
 .tks_info {
     border-radius: 10px;
-    box-shadow: 0px 0px 7px 1px black;
+    box-shadow: 0px 1px 7px 3px #d7d7d7;
 }

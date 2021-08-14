@@ -2,10 +2,10 @@
 <div class="order-item form-group row">
     <a href="../staff/orderdetails-accomplished/{{_id}}">
         <div class="row form-group">
-            <div class="col-10 create-at">{{dateFormat createdAt format="mm:hh DD/MM/YYYY"}}</div>
+            <div class="col-10 create-at">{{dateFormat createdAt format="hh:mm DD/MM/YYYY"}}</div>
             <div class="col-2 status-order">
                 <div class="float-right">
-                    <button type="button" class="btn btn-success btn-status btn-sm" value="{{orderstatus}}" disabled>Đã hoàn thành</button>
+                    <button type="button" class="btn btn-success btn-status btn-sm border-radius" value="{{orderstatus}}" disabled>Đã hoàn thành</button>
                 </div>
             </div>
         </div>

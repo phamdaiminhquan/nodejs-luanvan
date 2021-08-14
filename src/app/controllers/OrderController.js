@@ -77,64 +77,88 @@ class OrderController {
 
     //[GET] /staff/orderdetails/:id
     async orderdetails(req, res, next) {
-        Promise.all([
-            Order_model.findById({ _id: req.params.id }),
-            Orderdetails_model.find({ orderid: req.params.id }).populate('foodid')
-        ])
-            .then(([order, orderdetails]) => {
-                res.render('order/order-details', {
-                    order: mongooseToObject(order),
-                    orderdetails: multipleMongooseToOject(orderdetails)
+        const oder = Order_model.findById({ _id: req.params.id });
+        oder.then(value => {
+            const idAddress = value.idAddress;
+            Promise.all([
+                Order_model.findById({ _id: req.params.id }),
+                Orderdetails_model.find({ orderid: req.params.id }).populate('foodid'),
+                Address_model.findOne({ _id: idAddress })
+            ])
+                .then(([order, orderdetails, address]) => {
+                    res.render('order/order-details', {
+                        order: mongooseToObject(order),
+                        orderdetails: multipleMongooseToOject(orderdetails),
+                        address: mongooseToObject(address)
+                    })
                 })
-            })
-            .catch(next);
+                .catch(next);
+        })
     }
 
     //[GET] /staff/orderdetails-confirmed/:id
     async orderdetailsconfirmed(req, res, next) {
-        Promise.all([
-            Order_model.findById({ _id: req.params.id }),
-            Orderdetails_model.find({ orderid: req.params.id }).populate('foodid')
-        ])
-            .then(([order, orderdetails]) => {
-                res.render('order/order-details-confirmed', {
-                    order: mongooseToObject(order),
-                    orderdetails: multipleMongooseToOject(orderdetails)
+        const oder = Order_model.findById({ _id: req.params.id });
+        oder.then(value => {
+            const idAddress = value.idAddress;
+            Promise.all([
+                Order_model.findById({ _id: req.params.id }),
+                Orderdetails_model.find({ orderid: req.params.id }).populate('foodid'),
+                Address_model.findOne({ _id: idAddress })
+            ])
+                .then(([order, orderdetails, address]) => {
+                    res.render('order/order-details-confirmed', {
+                        order: mongooseToObject(order),
+                        orderdetails: multipleMongooseToOject(orderdetails),
+                        address: mongooseToObject(address)
+                    })
                 })
-            })
-            .catch(next);
+                .catch(next);
+        })
     }
 
     //[GET] /staff/orderdetails-confirmed/:id
     async orderdetailsaccomplished(req, res, next) {
-        Promise.all([
-            Order_model.findById({ _id: req.params.id }),
-            Orderdetails_model.find({ orderid: req.params.id }).populate('foodid'),
-            Ordercancel_model.findOne({ orderid: req.params.id })
-        ])
-            .then(([order, orderdetails, ordercancel]) => {
-                res.render('order/order-details-accomplished', {
-                    order: mongooseToObject(order),
-                    orderdetails: multipleMongooseToOject(orderdetails),
-                    ordercancel: mongooseToObject(ordercancel),
+        const oder = Order_model.findById({ _id: req.params.id });
+        oder.then(value => {
+            const idAddress = value.idAddress;
+            Promise.all([
+                Order_model.findById({ _id: req.params.id }),
+                Orderdetails_model.find({ orderid: req.params.id }).populate('foodid'),
+                Ordercancel_model.findOne({ orderid: req.params.id }),
+                Address_model.findOne({ _id: idAddress })
+            ])
+                .then(([order, orderdetails, ordercancel, address]) => {
+                    res.render('order/order-details-accomplished', {
+                        order: mongooseToObject(order),
+                        orderdetails: multipleMongooseToOject(orderdetails),
+                        ordercancel: mongooseToObject(ordercancel),
+                        address: mongooseToObject(address)
+                    })
                 })
-            })
-            .catch(next);
+                .catch(next);
+        })
     }
 
     //[GET] /order/tracking/:id
     async tracking(req, res, next) {
-        Promise.all([
-            Order_model.findById({ _id: req.params.id }),
-            Orderdetails_model.find({ orderid: req.params.id }).populate('foodid')
-        ])
-            .then(([order, orderdetails]) => {
-                res.render('order/tracking', {
-                    order: mongooseToObject(order),
-                    orderdetails: multipleMongooseToOject(orderdetails)
+        const oder = Order_model.findById({ _id: req.params.id });
+        oder.then(value => {
+            const idAddress = value.idAddress;
+            Promise.all([
+                Order_model.findById({ _id: req.params.id }),
+                Orderdetails_model.find({ orderid: req.params.id }).populate('foodid'),
+                Address_model.findOne({ _id: idAddress })
+            ])
+                .then(([order, orderdetails, address]) => {
+                    res.render('order/tracking', {
+                        order: mongooseToObject(order),
+                        orderdetails: multipleMongooseToOject(orderdetails),
+                        address: mongooseToObject(address)
+                    })
                 })
-            })
-            .catch(next);
+                .catch(next);
+        })
     }
 
     //[GET] /address

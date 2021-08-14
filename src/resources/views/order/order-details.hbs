@@ -1,26 +1,27 @@
 <div class="container bg-white box_pro_detail">
-    <div class="row">
-        <div>
-            <a href="/staff">
-                <button class="btn btn-light"><i class="fas fa-undo-alt"></i> QUAY LẠI</button>
-            </a>
-            <div class="float-right">
-                <button type="button" class="btn btn-info" value="{{orderstatus}}" disabled>Đơn mới</button>
-            </div>
-        </div>
-    </div>
-    <div class="row">
+    <div class="">
         <div class="row">
-            <div class="col-2">
-                <div class="avatar-customer">
-                    <center>
-                        <img src="https://i.pinimg.com/originals/eb/b0/2a/ebb02aedec9bc74f65e38311c7e14d34.png"
-                            alt="avatar">
-                    </center>
+            <div>
+                <a href="/staff">
+                    <button class="btn btn-light"><i class="fas fa-undo-alt"></i> QUAY LẠI</button>
+                </a>
+                <div class="float-right">
+                    <button type="button" class="btn btn-info" value="{{orderstatus}}" disabled>Đơn mới</button>
                 </div>
             </div>
-            <div class="col-5">
-                <div class="row flex-row">
+        </div>
+        <div class="row">
+            <div class="row">
+                <div class="col-2">
+                    <div class="avatar-customer">
+                        <center>
+                            <img src="https://i.pinimg.com/originals/eb/b0/2a/ebb02aedec9bc74f65e38311c7e14d34.png"
+                                alt="avatar">
+                        </center>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <br>
                     <div class="name-customer">
                         <b>Minh Quân</b>
                         <span>
@@ -30,45 +31,53 @@
                         </span>
                     </div>
                     <div class="type-customer"><i>Khách hàng vãng lai</i></div>
-                    <div class="">
-                        <div class="float-left">Địa chỉ giao hàng: 180 Cao lỗ, P4, Q8, TP.HCM</div>
-                    </div>
                 </div>
             </div>
-            <div class="col-5">
+        </div>
+        <hr>
+        <div class="row order-detail">
+            <div class="col-5 col-lg-5 pl-5">
+                <div class="row head_3">Thông tin đơn hàng</div>
                 <div class="row">
-                    <div>
-                        <div class="float-right">Mã đơn hàng: {{order._id}}</div>
+                    <div class="">Mã đơn hàng: {{order._id}}</div>
+                    <div class="">Thời gian đặt đơn: {{dateFormat createdAt format="hh:mm DD/MM/YYYY"}}</div>
+                </div>
+                <br>
+                <div class="row head_3">Thông tin giao hàng</div>
+                <div class="row">
+                    <div class="float-left">Tên người nhận: {{address.fullName}}</div>
+                    <div class="float-left">Số điện thoại: {{address.phone}}</div>
+                    <div class="float-left">Địa chỉ giao hàng:
+                        {{address.address}},
+                        {{address.wards}},
+                        {{address.district}},
+                        {{address.city}}
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <hr>
-    <br>
-    <div class="row order-detail">
-        <div class="col-7">
-            {{>staff/list-food-order}}
-            <div class="total-price"> 
-                <b>Tổng tiền món (giá gốc): <span class="float-right">{{order.totalmoney}}<small>.000đ</small></span></b>
+            <div class="col-7">
+                {{>staff/list-food-order}}
+                <div class="total-price">
+                    <b>Tổng tiền món (giá gốc):
+                        <span class="float-right price-big">{{order.totalmoney}}.000đ</span></b>
+                </div>
             </div>
         </div>
-        <div class="col-5">
-            <form action="/staff/confirm/{{order._id}}" method="post">
-                <input type="hidden" name="orderstatus" value="1">
-                <button class="btn btn-danger btn-lg form-group" style="width: 100%;" type="submit">XÁC NHẬN</button>
-            </form>
-            <form action="/staff/cancel/{{order._id}}" method="post">
-                <input type="hidden" name="orderstatus" value="3">
-                <button class="btn btn-outline-dark btn-lg" style="width: 100%;">HỦY ĐƠN</button>
-            </form>
-        </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-7">
-            <div class="float-left">Thời gian đặt đơn: {{order.createdAt}}</div>
+        <br>
+        <div class="display-flex">
+            <div class="next-bar" style="width: 50%;height: 46px;">
+                <form action="/staff/cancel/{{order._id}}" method="post">
+                    <input type="hidden" name="orderstatus" value="3">
+                    <button class="btn btn-outline-dark btn-lg" style="width: 100%; height: 100%;">HỦY ĐƠN</button>
+                </form>
+            </div>
+            <div class="next-bar" style="width: 50%;height: 46px;">
+                <form action="/staff/confirm/{{order._id}}" method="post">
+                    <input type="hidden" name="orderstatus" value="1">
+                    <button class="btn btn-danger btn-lg form-group" style="width: 100%;" type="submit">XÁC
+                        NHẬN</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
-

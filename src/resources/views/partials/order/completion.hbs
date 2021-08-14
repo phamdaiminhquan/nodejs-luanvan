@@ -3,41 +3,43 @@
         <div class="col-12 col-lg-5">
             <h3 class="delivery_title mb-4 mt-4">Thông tin nhận hàng</h3>
             <!-- Hiển thị địa chỉ nhận hàng -->
-            <div class="address" id="address">
-
-            </div>
-            <div class="form-group">
-                <Center>
-                    <button style=" width: 100%;" onclick="submitWithFormID('submitOrder')"
-                        class="btn btn-danger btn-lg">THÊM MÓN ĂN</button>
-                </Center>
-            </div>
+            <div class="address" id="address"></div>
         </div>
         <div class="col-12 col-lg-7">
             <h3 class="delivery_title mb-4 mt-4">Bạn đã đặt</h3>
-            <div class="delivery_box box_pro_detail">
-                <!-- Hiển thị sản phẩm trong giỏ hàng -->
-                <div class="cart_new_item mb-0">
-                    <div class="gio-hang" id="gio-hang">
-
+            <div class="box-shadow">
+                <div class="delivery_box_2 box_pro_detail">
+                    <!-- Hiển thị sản phẩm trong giỏ hàng -->
+                    <div class="cart_new_item mb-0">
+                        <div class="gio-hang" id="gio-hang"></div>
+                    </div>
+                    <!-- Hiển thị tổng giá tiền -->
+                    <div class="promotion_new">
+                        <div class="d-flex align-items-center bd-highlight mb-2">
+                            <div class="d-flex align-items-center mr-auto bd-highlight">
+                                <p>Tổng đơn hàng</p>
+                            </div>
+                            <div class="bd-highlight price_item_new price-bold">
+                                <span id="price_item_new"></span>.000đ
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- Hiển thị tổng giá tiền -->
-                <div class="promotion_new">
-                    <div class="d-flex align-items-center bd-highlight mb-2">
-                        <div class="d-flex align-items-center mr-auto bd-highlight">
-                            <p>Tổng đơn hàng</p>
+                <div class="sub_total align-items-center bd-highlight pb-0 next-bar">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="bd-highlight price_item_new price-big float-right">
+                                <div class="float-right">
+                                    <span id="total_price"></span>.000đ
+                                </div>
+                            </div>
                         </div>
-                        <div class="bd-highlight price_item_new price-bold">
-                            <span id="price_item_new"></span>.000đ
+                        <div class="col-4">
+                            <button style=" width: 100%;" onclick="submitWithFormID('submitOrder')"
+                                class="btn btn-danger btn-lg btn-next">TIẾP TỤC</button>
                         </div>
                     </div>
-                </div>
-                <div class="sub_total d-flex align-items-center bd-highlight pb-0">
-                    <div class="mr-auto bd-highlight cart_tt no_padding_top">Tổng thanh toán</div>
-                    <div class="bd-highlight price_item_new price-big">
-                        <span id="total_price"></span>.000đ
-                    </div>
+                    {{!-- <div class="mr-auto bd-highlight cart_tt no_padding_top">Tổng thanh toán</div> --}}
                 </div>
             </div>
         </div>
@@ -86,6 +88,6 @@
         $("input[name='paymentType']").val(payment.payment);
         submitCartForm.action = '/order/order';
         submitCartForm.submit();
-        //deleteListItemCartInLocal();
+        deleteInLocal();
     }
 </script>

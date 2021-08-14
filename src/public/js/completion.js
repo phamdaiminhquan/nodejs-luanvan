@@ -133,7 +133,10 @@ function itemCartToString(itemCart) {
     return string;
 }
 
-function deleteListItemCartInLocal() {
-    var jsonListItemCart = '[]';
-    localStorage.setItem(keyLocalStorageItemCart, jsonListItemCart);
+function deleteInLocal() {
+    var empty = '[]';
+    localStorage.setItem(keyLocalStorageItemCart, empty);
+    localStorage.setItem(keyLocalStorageTotalOrderMoney, empty);
+    localStorage.setItem(keyLocalStorageAddress, empty);
+    localStorage.setItem(keyLocalStoragePayment, empty);
 }
