@@ -29,8 +29,15 @@ a {
   color: #e22323 !important;
   padding: 5px 0px; }
 
+.price-orange {
+  font-size: 24px !important;
+  color: #ff6a00 !important; }
+
 .border-radius {
   border-radius: 100px !important; }
+
+.border-radius-20 {
+  border-radius: 20px !important; }
 
 .box-shadow {
   box-shadow: 0px 2px 7px 3px #d7d7d7;
@@ -38,6 +45,9 @@ a {
 
 .btn-next {
   border-radius: 0px 0px 10px 0px !important; }
+
+.btn-next-item {
+  border-radius: 0px 0px 20px 0px !important; }
 
 .head_3 {
   margin: 0;
@@ -86,6 +96,10 @@ a {
 .adv-img-upload img {
   border-radius: 10px; }
 
+.card-title {
+  color: #000;
+  font-size: 22px; }
+
 .cart-item {
   padding: 2.222222rem;
   box-shadow: 0px 4px 20px 0px #0000001c;
@@ -100,8 +114,6 @@ a {
   padding: 2.222222222222222em; }
 
 .card-price {
-  color: black;
-  font-weight: bold;
   margin-bottom: 0;
   position: relative; }
 
@@ -118,10 +130,15 @@ a {
 .card {
   width: 260px;
   height: 375px;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  border-radius: 20px !important;
+  border: 0px !important;
+  box-shadow: 0px 1px 7px 3px #d7d7d7; }
 
 .card-img-top {
-  height: 155px; }
+  height: 155px;
+  border-radius: 20px !important;
+  box-shadow: 0px 1px 7px 3px #d7d7d7; }
 
 .card-button {
   padding: 10px 20px; }
@@ -249,6 +266,9 @@ a.menu-function-admin:hover {
 
 .clearfix {
   display: block; }
+
+.child {
+  text-transform: uppercase; }
 
 .setup-shipper .setup-shipper-content .item-policy:first-child {
   border-top: none; }

@@ -13,12 +13,15 @@ class FoodController {
     index(req, res, next) {
         Promise.all([
             Food.find({}),
-            adv_model.find({})
+            adv_model.find({}),
+            foodtype_model.find({})
+
         ])
-            .then(([food, adv]) => {
+            .then(([food, adv, foodtype]) => {
                 res.render('home', {
                     food: multipleMongooseToOject(food),
-                    adv: multipleMongooseToOject(adv)
+                    adv: multipleMongooseToOject(adv),
+                    foodtype: multipleMongooseToOject(foodtype)
                 })
             })
             .catch(next);

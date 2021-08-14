@@ -2,6 +2,12 @@
 {{#each food}}
 <div class="col-sm-6 col-lg-4">
     <div class="card">
+        <div class="pl-3 pr-2 py-1">
+            <div class="">
+                <!--TAG KHUYẾN MÃI-->
+                <button type="button" class="btn btn-warning btn-sm border-radius" disabled>NEW</button>
+            </div>
+        </div>
         <a href="/food/{{this.slug}}">
             <img src="/upload/{{this.image}}" class="card-img-top" alt="{{this.name}}" />
         </a>
@@ -9,16 +15,26 @@
             <a href="/food/{{this.slug}}">
                 <h5 class="card-title">{{this.name}}</h5>
             </a>
-            <div class="card-price">
-                <span>{{this.price}}<small>.000đ</small></span>
-            </div>
-            <p class="card-text">{{this.description}}</p>
         </div>
         <div class="card-button">
-            <a href="/food/{{this.slug}}"><button type="button" class="btn btn-outline-dark">TÙY CHỈNH</button></a>
+            {{!-- <a href="/food/{{this.slug}}"><button type="button" class="btn btn-outline-dark border-radius-20">TÙY
+                    CHỈNH</button></a>
             <button
-                onclick="onClickAdd('{{this._id}}','{{this.name}}','{{this.description}}','{{this.image}}','{{this.price}}')"
-                type="button" class="btn btn-danger">ĐẶT HÀNG</button>
+                
+                 class="btn btn-danger border-radius-20"></button> --}}
+        </div>
+        <div class="row next-bar">
+            <div class="col-6">
+                <div class="bd-highlight price_item_new price-big float-right">
+                    <div class="float-right">
+                        <span class="">₫{{this.price}}.000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <button style=" width: 100%;" onclick="onClickAdd('{{this._id}}','{{this.name}}','{{this.description}}','{{this.image}}','{{this.price}}')"
+                    type="button" class="btn btn-danger btn-lg btn-next-item"> <b>ADD +</b> </button>
+            </div>
         </div>
     </div>
 </div>
