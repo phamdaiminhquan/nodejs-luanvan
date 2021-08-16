@@ -45,13 +45,11 @@
 
         saveTotalOrderMoneyInLocal(totalMoney);
     }
-
     function submitCart() {
         var submitCartForm = document.forms['submit-cart-form'];
         submitCartForm.action = '/order/address';
         submitCartForm.submit();
     }
-
     function xoa(id) {
         var nodeCart = document.getElementById(id + 'main');
         nodeCart.parentNode.removeChild(nodeCart);
@@ -59,7 +57,6 @@
         addAmountInnerID('cart-text');
         showTotalMoney();
     }
-
     // tăng một số lượng của sản phẩm
     function tang(id) {
         var ListItemCart = getListItemCart();
@@ -90,7 +87,6 @@
 
         showTotalMoney();
     }
-
     // giảm một số lượng của sản phẩm
     function giam(id) {
         var ListItemCart = getListItemCart();

@@ -57,7 +57,7 @@ class FoodController {
     //[GET] /admin/foodlist/create
     create(req, res, next) {
         foodtype_model.find({})
-            .then((foodtype) => 
+            .then((foodtype) =>
                 res.render('food/create', {
                     foodtype: multipleMongooseToOject(foodtype),
                     layout: 'admain'
@@ -68,11 +68,24 @@ class FoodController {
 
     // [GET] /food/:slug
     detail(req, res, next) {
-        Food.findOne({ slug: req.params.slug })
-            .then((food) => {
-                res.render('food/detail', { 
-                    food: mongooseToObject(food)
-                })
+        const food = Food.findOne({ slug: req.params.slug });
+        food
+            .then(value => {
+                var String = value.description;
+                var list = [];
+                var duoi = String.length;
+                var chuoicat = '';
+                for (var i = String.length; i >= 0; i--) {
+                    if (String[i] == '/') {
+                        chuoicat = String.slice(i + 1, duoi);
+                        var description = new Object();
+                        description.line = chuoicat;
+                        list.push(description);
+                        duoi = i;
+                    }
+                }
+                res.render('food/detail',{ food: mongooseToObject(value), list });
+
             })
             .catch(next);
     }
