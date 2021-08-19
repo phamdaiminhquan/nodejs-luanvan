@@ -1,13 +1,17 @@
-<div class="container">
+<div class="container page-h">
     <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
-            <center><h1>ĐĂNG NHẬP <i class="fas fa-sign-in-alt"></i></h1></center>
-            <form action="/login" method="POST">
+            <center>
+                <h1>ĐĂNG NHẬP <i class="fas fa-sign-in-alt"></i></h1>
+            </center>
+            <div class="alert alert-danger login fade" role="alert"></div>
+            <form action="/login" method="POST" name="formLogin">
                 <div class="mb-3 row">
                     <div class="col-sm-1"></div>
-
-                    <label for="numberPhone" class="col-sm-3 col-form-label"><Center>Số điện thoại</Center></label>
+                    <label for="numberPhone" class="col-sm-3 col-form-label">
+                        <Center>Số điện thoại</Center>
+                    </label>
                     <div class="col-sm-6">
                         <input type="text" name="numberPhone" class="form-control" id="numberPhone">
                     </div>
@@ -17,9 +21,11 @@
                 <div class="mb-3 row">
                     <div class="col-sm-1"></div>
 
-                    <label for="inputPassword" class="col-sm-3 col-form-label"><Center>PIN</Center></label>
+                    <label for="inputPassword" class="col-sm-3 col-form-label">
+                        <Center>PIN</Center>
+                    </label>
                     <div class="col-sm-6">
-                        <input type="password" name="password" class="form-control" id="inputPassword">
+                        <input type="password" name="pin" class="form-control" id="inputPassword">
                     </div>
 
                     <div class="col-sm-2"></div>
@@ -38,3 +44,38 @@
         <div class="col-3"></div>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var form = document.forms['formLogin']
+        var alertLogin = $('.alert.alert-danger.login')
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault()
+            //reset error
+            //emailError.text('')
+            //passwordError.text('')
+            // get the values
+            const phone = form.numberPhone.value
+            const pin = form.pin.value
+            alertLogin.text('')
+            // axios
+            axios.post('/login', {
+                phone: phone,
+                pin: pin
+            })
+                .then(async (res) => {
+                    console.log(res.data)
+                    const data = await res.data
+                    if (data.user) {
+                        location.assign('/')
+                    }
+                })
+                .catch(async (err) => {
+                    const data = await err.response.data
+                    if (data.errors) {
+                        alertLogin.removeClass("fade")
+                        alertLogin.text(data.errors.email)
+                    }
+                })
+        })
+    })
+</script>

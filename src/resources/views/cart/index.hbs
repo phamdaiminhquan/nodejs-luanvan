@@ -41,8 +41,7 @@
         }
         var moneyTotal = document.getElementById('total-money-show');
         moneyTotal.innerText = '';
-        moneyTotal.innerHTML = '<span>' + totalMoney + '<small>.000</small></span>';
-
+        moneyTotal.innerHTML = '₫' + totalMoney + '.000';
         saveTotalOrderMoneyInLocal(totalMoney);
     }
     function submitCart() {
