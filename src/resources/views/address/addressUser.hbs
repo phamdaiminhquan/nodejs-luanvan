@@ -1,0 +1,64 @@
+<div class="container bg-white">
+    <div class="p-5 m-5">
+        {{#address}}
+        <hr>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-8 offset-1">
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="float-right">Họ Và Tên</div>
+                            </div>
+                            <div class="col-5"><b>{{fullName}}</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="float-right">Số điện thoại</div>
+                            </div>
+                            <div class="col-5">{{phone}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="float-right">Địa chỉ</div>
+                            </div>
+                            <div class="col-6">
+                                <div class="">{{address}}</div>
+                                <div class="">{{wards}}</div>
+                                <div class="">{{district}}</div>
+                                <div class="">{{city}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 p-4">
+                    <div class="address" id="{{_id}}">
+                        <a href="/user/address/default/{{_id}}/{{idUser}}"
+                            class="btn btn-outline-success btn-sm border-radius m-2" style="width: 100%">Chọn mặc
+                            định</a>
+                    </div>
+                    <a href="/user/address/edit/{{_id}}" class="btn btn-outline-warning btn-sm border-radius m-2"
+                        style="width: 100%">Sửa</a>
+                </div>
+            </div>
+        </div>
+        {{/address}}
+        <a href="/user/address/create">
+            <button class="btn btn-danger btn-lg border-radius" style="width: 100%">THÊM ĐỊA CHỈ MỚI</button>
+        </a>
+    </div>
+    <div class="user" id="{{user.default}}"></div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var idUser = document.getElementsByClassName('user')[0].id;
+        var address = document.querySelectorAll('.address')
+        address.forEach((address) => {
+            if (address.id == idUser) {
+                address.innerHTML = '';
+                address.innerHTML = '<button class="btn btn-danger btn-sm border-radius m-2" style="width: 100%" disabled>ĐỊA CHỈ MẶC ĐỊNH</button>';
+            }
+        })
+    })
+</script>

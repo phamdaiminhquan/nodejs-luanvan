@@ -20,6 +20,10 @@ const userSchema = new Schema({
     avatar: { type: String},
     sex: { type: String},
     email: { type: String},
+    default: {
+        type: Schema.Types.ObjectId,        
+        ref: "Address"
+    },
 }, { 
     timestamps: true,
 });

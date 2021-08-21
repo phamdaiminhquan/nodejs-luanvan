@@ -8,7 +8,11 @@ const Address = new Schema({
     city: { type: String },
     district: { type: String },
     wards: { type: String },
-    address: { type: String }
+    address: { type: String },
+    idUser: {
+        type: Schema.Types.ObjectId,        
+        ref: "User"
+    },
 }, { 
     timestamps: true,
 });

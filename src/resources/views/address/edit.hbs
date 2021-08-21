@@ -1,0 +1,53 @@
+<div class="container bg-white">
+    <div class="row p-4">
+        <div class="col-8 offset-2">
+            <form action="/user/address/update/{{address._id}}" method="POST">
+                <center>
+                    <h3 class="delivery_title mb-2">Sửa địa chỉ</h3>
+                </center>
+                <input type="hidden" name="idUser" value="{{address.idUser}}">
+                <div class="form-group">
+                    <label for="inputFullname"><span>Họ và tên <i class="text-danger">*</i></span></label>
+                    <input type="text" name="fullName" id="inputFullname" class="form-control border-radius"
+                        placeholder="Họ và tên" value="{{address.fullName}}">
+                </div>
+                <div class="form-group">
+                    <label for="inputPhone"><span>Điện thoại <i class="text-danger">*</i></span></label>
+                    <input type="text" name="phone" id="inputPhone" maxlength="10" class="form-control border-radius"
+                        placeholder="Điện thoại" value="{{address.phone}}">
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail"><span>Email <i class="text-danger">*</i></span></label>
+                    <input type="text" name="email" id="inputEmail" class="form-control border-radius"
+                        placeholder="Email" value="{{address.email}}">
+                </div>
+                <div class="form-group">
+                    <label for="inputCity"><span>Tỉnh/Thành Phố <i class="text-danger">*</i></span></label>
+                    <input type="text" name="city" id="inputCity" class="form-control border-radius"
+                        placeholder="Tỉnh/Thành Phố" value="{{address.city}}">
+                </div>
+                <div class="form-group">
+                    <label for="inputDistrict"><span>Quận/Huyện <i class="text-danger">*</i></span></label>
+                    <input type="text" name="district" id="inputDistrict" class="form-control border-radius"
+                        placeholder="Quận/Huyện" value="{{address.district}}">
+                </div>
+                <div class="form-group">
+                    <label for="inputWards"><span>Phường/Xã <i class="text-danger">*</i></span></label>
+                    <input type="text" name="wards" id="inputWards" class="form-control border-radius"
+                        placeholder="Phường/Xã" value="{{address.wards}}">
+                </div>
+                <div class="form-group">
+                    <label for="inputAddress"><span>Địa chỉ (Số nhà - Tên đường) <i
+                                class="text-danger">*</i></span></label>
+                    <input type="text" name="address" id="inputAddress" class="form-control border-radius"
+                        placeholder="Địa chỉ (Số nhà - Tên đường)" value="{{address.address}}">
+                </div>
+                <div class="form-group">
+                    <center>
+                        <button style=" width: 100%;" type="submit" class="btn btn-danger btn-lg border-radius">SỬA</button>
+                    </center>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

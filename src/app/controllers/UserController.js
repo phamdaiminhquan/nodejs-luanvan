@@ -1,6 +1,8 @@
 const { mongooseToObject } = require('../../util/mongoose');
+const { multipleMongooseToOject } = require('../../util/mongoose');
 const { findById } = require('../models/user');
-const user_model = require('../models/user')
+const user_model = require('../models/user');
+const Address_model = require('../models/Address');
 const multer = require('multer');
 
 class UserController {
@@ -18,6 +20,58 @@ class UserController {
                         user: mongooseToObject(user)
                     });
                 }
+            })
+            .catch(next);
+    }
+
+    //[GET] /user/address/:id
+    address(req, res, next) {
+        Promise.all([
+            Address_model.find({ idUser: req.params.id }),
+            user_model.findById({ _id: req.params.id })
+        ])
+            .then(([address, user]) => {
+                res.render('address/addressUser', {
+                    address: multipleMongooseToOject(address),
+                    user: mongooseToObject(user)
+                });
+            })
+            .catch(next);
+    }
+
+    //[GET] /user/address/create
+    createAddress(req, res, next) {
+        res.render('address/create')
+    }
+
+    // [GET] /user/address/edit/:id
+    edit(req, res, next) {
+        Address_model.findById({ _id: req.params.id })
+            .then((address) => {
+                res.render('address/edit', {
+                    address: mongooseToObject(address)
+                })
+            })
+            .catch(next);
+    }
+
+    //[POST] /user/address/create/:id
+    storeAddress(req, res, next) {
+        // console.log(req.body)
+        const address = Address_model({
+            fullName: req.body.fullName,
+            phone: req.body.phone,
+            email: req.body.email,
+            city: req.body.city,
+            district: req.body.district,
+            wards: req.body.wards,
+            address: req.body.address,
+            idUser: req.params.id,
+        })
+        address
+            .save()
+            .then((address) => {
+                res.redirect('../../../user/address/' + address.idUser)
             })
             .catch(next);
     }
@@ -52,6 +106,35 @@ class UserController {
             avatar: req.file.filename
         })
             .then(() => res.redirect('../' + req.params.id + ''))
+            .catch((err) => {
+                res.status(400).json(err)
+            })
+    }
+
+    //[POST] /user/address/update/:id
+    async update(req, res, next) {
+        const Address = await Address_model.updateOne({ _id: req.params.id }, {
+            fullName: req.body.fullName,
+            phone: req.body.phone,
+            email: req.body.email,
+            city: req.body.city,
+            district: req.body.district,
+            wards: req.body.wards,
+            address: req.body.address,
+        })
+            .then((address) => res.redirect('../' + req.body.idUser))
+            .catch((err) => {
+                res.status(400).json(err)
+            })
+    }
+
+    //[POST] /user/address/default/:id
+    async default(req, res, next) {
+        const Address = await user_model.updateOne({ _id: req.params.idUser }, {
+            default: req.params.id,
+        })
+            .then((address) => 
+                res.redirect('../../' + req.params.idUser))
             .catch((err) => {
                 res.status(400).json(err)
             })
